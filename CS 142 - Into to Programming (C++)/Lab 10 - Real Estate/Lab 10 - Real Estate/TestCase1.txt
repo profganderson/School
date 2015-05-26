@@ -1,0 +1,7 @@
+Residential 0 250000 1 142 CS Blvd
+Commercial 0 1234567 1 0.20 350 Sea Towers
+Residential 1 533000 0 572 Random Road
+Commerical 23343.2 Wrong Way
+This line is so invalid!!
+Residential 1 5732 1 759374 Address Place
+Residential 0 718739183 0 1234 Cool Address #222
