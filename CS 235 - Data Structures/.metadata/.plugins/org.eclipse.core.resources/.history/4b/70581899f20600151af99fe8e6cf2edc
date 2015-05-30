@@ -1,0 +1,71 @@
+/*
+ * Pathfinder.cpp
+ *
+ *  Created on: May 30, 2015
+ *      Author: mocklera
+ */
+
+#include <cstdlib>
+#include <fstream>
+#include "Pathfinder.h"
+
+Pathfinder::Pathfinder() {
+	// Default maze is all 1s
+	for ( int i = 0; i < 5; i++ )
+	{
+		for ( int j = 0; j < 5; j++ )
+		{
+			for ( int k = 0; k < 5; k++ )
+			{
+				maze << "1 ";
+			}
+			maze << "\n";
+		}
+		maze << "\n\n";
+	}
+}
+
+string Pathfinder::getMaze() {
+	return maze.str();
+}
+
+void Pathfinder::createRandomMaze() {
+	stringstream rand_maze;
+
+	for ( int i = 0; i < 5; i++ )
+	{
+		for ( int j = 0; j < 5; j++ )
+		{
+			for ( int k = 0; k < 5; k++ )
+			{
+				if ( i == 0 && j == 0 && k == 0 ) {
+					rand_maze << "1 ";
+				} else if ( i == 4 && j == 4 && k == 4 ) {
+					rand_maze << "1";
+				} else {
+					int num = rand() % 2;
+					rand_maze << num << " ";
+				}
+			}
+			maze << "\n";
+		}
+		maze << "\n\n";
+	}
+
+	maze.str( string() );
+	maze.clear();
+	maze << rand_maze.str();
+}
+
+bool Pathfinder::importMaze(string file_name) {
+	bool imported = false;
+
+
+
+	return true;
+}
+
+vector<string> Pathfinder::solveMaze() {
+	vector<string> a;
+	return a;
+}

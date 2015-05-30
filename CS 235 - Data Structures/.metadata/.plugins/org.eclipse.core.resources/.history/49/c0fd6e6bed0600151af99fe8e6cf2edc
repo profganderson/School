@@ -1,0 +1,19 @@
+/*
+ * Pathfinder.h
+ *
+ *  Created on: May 30, 2015
+ *      Author: mocklera
+ */
+
+#ifndef PATHFINDER_H_
+#define PATHFINDER_H_
+
+#include "PathfinderInterface.h"
+
+class Pathfinder: public PathfinderInterface {
+public:
+	Pathfinder();
+	virtual ~Pathfinder();
+};
+
+#endif /* PATHFINDER_H_ */
