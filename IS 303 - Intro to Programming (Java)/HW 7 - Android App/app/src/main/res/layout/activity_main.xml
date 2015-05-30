@@ -1,0 +1,171 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#FF0000FF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meeting Attendance Counter"
+        android:id="@+id/txtTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+1"
+        android:id="@+id/btnPlus1"
+        android:layout_below="@+id/txtTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:width="150px"
+        android:onClick="addOne"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+5"
+        android:id="@+id/btnPlus5"
+        android:layout_alignTop="@+id/btnPlus1"
+        android:layout_toRightOf="@+id/btnPlus1"
+        android:width="150px"
+        android:onClick="addFive"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+10"
+        android:id="@+id/btnPlus10"
+        android:layout_alignTop="@+id/btnPlus5"
+        android:layout_toRightOf="@+id/btnPlus5"
+        android:width="150px"
+        android:onClick="addTen"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-1"
+        android:id="@+id/btnMinus1"
+        android:layout_marginTop="35dp"
+        android:width="150px"
+        android:layout_below="@+id/btnPlus1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="minusOne"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-5"
+        android:id="@+id/btnMinus5"
+        android:width="150px"
+        android:layout_alignTop="@+id/btnMinus1"
+        android:layout_toRightOf="@+id/btnMinus1"
+        android:layout_toEndOf="@+id/btnMinus1"
+        android:onClick="minusFive"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-10"
+        android:id="@+id/btnMinus10"
+        android:width="150px"
+        android:layout_alignTop="@+id/btnMinus5"
+        android:layout_toRightOf="@+id/btnMinus5"
+        android:layout_toEndOf="@+id/btnMinus5"
+        android:onClick="minusTen"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Count:"
+        android:id="@+id/txtCountLabel"
+        android:layout_below="@+id/btnMinus1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="37dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:id="@+id/txtCount"
+        android:layout_below="@+id/txtCountLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/txtCountLabel"
+        android:layout_alignEnd="@+id/txtCountLabel"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px"
+        android:layout_marginTop="35px" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESET"
+        android:id="@+id/btnReset"
+        android:layout_below="@+id/txtCountLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50px"
+        android:onClick="reset"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Recipient"
+        android:id="@+id/txtEmailLabel"
+        android:layout_marginTop="38dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px"
+        android:textStyle="bold"
+        android:layout_below="@+id/btnReset"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="8"
+        android:id="@+id/inputEmail"
+        android:layout_below="@+id/txtEmailLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#FF00FFFF"
+        android:textSize="50px"
+        android:padding="10px"
+        android:layout_alignRight="@+id/btnMinus10"
+        android:layout_alignEnd="@+id/btnMinus10" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEND"
+        android:id="@+id/btnSend"
+        android:layout_alignBottom="@+id/inputEmail"
+        android:layout_alignLeft="@+id/btnReset"
+        android:layout_alignStart="@+id/btnReset"
+        android:onClick="sendEmail"/>
+
+</RelativeLayout>

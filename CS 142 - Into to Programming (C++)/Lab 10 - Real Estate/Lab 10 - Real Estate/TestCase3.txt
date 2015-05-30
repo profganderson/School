@@ -1,0 +1,8 @@
+Commercial 1 758473 0 0.9 123 Provo Pl
+Commercial 0 849302 1 0.1 573 BYU Ave
+Residential 0 1234 0 57483 Unappetizing Neighborhood
+Residential 1 752022 1 5789 Swanky Lane
+Bad line
+asdf
+asdfa
+sdfasdfa
