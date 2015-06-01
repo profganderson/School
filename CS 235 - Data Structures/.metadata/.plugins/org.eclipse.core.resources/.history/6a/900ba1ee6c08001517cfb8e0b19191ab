@@ -22,12 +22,8 @@ public:
 	virtual vector<string> solveMaze();
 
 private:
-	static const int GRID_SIZE = 5;
-	int maze[GRID_SIZE][GRID_SIZE][GRID_SIZE];
-	vector<string> result;
-
-	bool check_cell(int x, int y, int z);
-	void store_coordinate(int x, int y, int z);
+	stringstream maze;
+	const int GRID_SIZE = 5;
 };
 
 #endif /* PATHFINDER_H_ */

@@ -7,7 +7,6 @@
 
 #include <cstdlib>
 #include <fstream>
-#include <algorithm>
 #include "Pathfinder.h"
 
 Pathfinder::Pathfinder() {
@@ -123,69 +122,42 @@ bool Pathfinder::importMaze(string file_name) {
 }
 
 vector<string> Pathfinder::solveMaze() {
+	vector<string> a;
 
 	// clear the vector
-	result.clear();
+	// You might need to reverse the vector after everything
+	// make sure you return maze to normal (no 2's)
 
-	// Check if there is a valid path
-	if ( check_cell(0, 0, 0) ) {
-		reverse(result.begin(), result.end());
-	}
-	else {
-		result.clear();
-	}
+	// TODO: Help session
+	// Use int maze[5][5][5] ; solve it with a 3D array
+		// maze[x][y][z] = 1;
+	// Make separate recursive function to call from solveMaze()
+		// rec(int x, int y, int z)
+			// you don't have to pass the maze or the vector of results every time; just make them class members
+			// it will be beneficial to return a bool. So then you can say if a path is valid by returning true or false
+		// make sure you check base cases first
+			// out of bounds (above 4, under 0)
+			// at the end? (4, 4, 4)
+			// at wall? at somewhere visited?
+		// Visit the cell
+			// just set the visited cell to 2
+		// Recurse
+			// Call the function again like rec(x + 1, y, z); rec(x - 1, y, z); rec(x, y - 1, z)....
+				// Do them all separately and move only 1 cell at a time
+				// you can wrap it all in an if statement since they return true or false [ if ( rec() || rec() || rec() || rec()...) ]
+					// if that returns true, then store x, y, and z
+					// "Before you return true, add it to the vector"
 
-	// Return maze to normal (no 2's)
-	for (int x = 0; x < GRID_SIZE; x++)
-	{
-		for (int y = 0; y < GRID_SIZE; y++)
-		{
-			for (int z = 0; z < GRID_SIZE; z++)
-			{
-				if ( maze[x][y][z] == 2 ) {
-					maze[x][y][z] = 1;
-				}
-			}
-		}
-	}
-
-	// Return the path
-	return result;
+	return a;
 }
 
 bool Pathfinder::check_cell(int x, int y, int z) {
 	bool valid;
-	stringstream coordinate;
-
-	if ( x < 0 || x > 4 || y < 0 || y > 4 || z < 0 || z > 4 ) { // Keep from going out of bounds
+	if ( x > 4 || y > 4 || z > 4 ) {
 		valid = false;
-	} else if ( x == 4 && y == 4 && z == 4 ) { // End of maze
-		store_coordinate(x, y, z);
-		valid = true;
-	} else if ( maze[x][y][z] != 1 ) { // already visited or unvisitable
-		valid = false;
-	} else {
-		maze[x][y][z] = 2; // Mark the space as visited
-
-		// Check surrounding cells and store this as a valid coordinate if it can continue
-		if ( check_cell(x + 1, y, z) || check_cell(x - 1, y, z)
-			 || check_cell(x, y + 1, z) || check_cell(x, y - 1, z)
-			 || check_cell(x, y, z + 1) || check_cell(x, y, z - 1) ){
-			store_coordinate(x, y, z);
-			valid = true;
-		}
-		else {
-			valid = false;
-		}
-
 	}
 
 	return valid;
 }
 
-void Pathfinder::store_coordinate(int x, int y, int z) {
-	stringstream coordinate;
-	coordinate << "(" << x << ", " << y << ", " << z << ")";
-	result.push_back(coordinate.str());
-}
 

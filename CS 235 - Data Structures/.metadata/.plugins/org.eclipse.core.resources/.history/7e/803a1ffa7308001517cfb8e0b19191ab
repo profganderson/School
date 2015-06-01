@@ -129,7 +129,7 @@ vector<string> Pathfinder::solveMaze() {
 
 	// Check if there is a valid path
 	if ( check_cell(0, 0, 0) ) {
-		reverse(result.begin(), result.end());
+		// reverse the vector
 	}
 	else {
 		result.clear();
@@ -149,7 +149,26 @@ vector<string> Pathfinder::solveMaze() {
 		}
 	}
 
-	// Return the path
+	// TODO: Help session
+	// Use int maze[5][5][5] ; solve it with a 3D array
+		// maze[x][y][z] = 1;
+	// Make separate recursive function to call from solveMaze()
+		// rec(int x, int y, int z)
+			// you don't have to pass the maze or the vector of results every time; just make them class members
+			// it will be beneficial to return a bool. So then you can say if a path is valid by returning true or false
+		// make sure you check base cases first
+			// out of bounds (above 4, under 0)
+			// at the end? (4, 4, 4)
+			// at wall? at somewhere visited?
+		// Visit the cell
+			// just set the visited cell to 2
+		// Recurse
+			// Call the function again like rec(x + 1, y, z); rec(x - 1, y, z); rec(x, y - 1, z)....
+				// Do them all separately and move only 1 cell at a time
+				// you can wrap it all in an if statement since they return true or false [ if ( rec() || rec() || rec() || rec()...) ]
+					// if that returns true, then store x, y, and z
+					// "Before you return true, add it to the vector"
+
 	return result;
 }
 
@@ -157,7 +176,7 @@ bool Pathfinder::check_cell(int x, int y, int z) {
 	bool valid;
 	stringstream coordinate;
 
-	if ( x < 0 || x > 4 || y < 0 || y > 4 || z < 0 || z > 4 ) { // Keep from going out of bounds
+	if ( x > 4 || y > 4 || z > 4 ) { // Keep from going out of bounds
 		valid = false;
 	} else if ( x == 4 && y == 4 && z == 4 ) { // End of maze
 		store_coordinate(x, y, z);
@@ -165,9 +184,8 @@ bool Pathfinder::check_cell(int x, int y, int z) {
 	} else if ( maze[x][y][z] != 1 ) { // already visited or unvisitable
 		valid = false;
 	} else {
-		maze[x][y][z] = 2; // Mark the space as visited
+		maze[x][y][z] = 2;
 
-		// Check surrounding cells and store this as a valid coordinate if it can continue
 		if ( check_cell(x + 1, y, z) || check_cell(x - 1, y, z)
 			 || check_cell(x, y + 1, z) || check_cell(x, y - 1, z)
 			 || check_cell(x, y, z + 1) || check_cell(x, y, z - 1) ){

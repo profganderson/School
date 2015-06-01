@@ -27,7 +27,7 @@ private:
 	vector<string> result;
 
 	bool check_cell(int x, int y, int z);
-	void store_coordinate(int x, int y, int z);
+	void store_path(int x, int y, int z);
 };
 
 #endif /* PATHFINDER_H_ */
