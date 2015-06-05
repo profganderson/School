@@ -13,10 +13,10 @@ You are required to use template classes that accept various types including int
 ##### Part 1 - Make The Linked List (14 points)
 * Construct a Single-Linked List that can be used with template classes
 * Successfully implement all of the methods found in the LinkedListInterface.h
-* 
+
 ##### Part 2 - No Leaks in the Hull (14 points)
 * Run and pass ValGrind on your program to ensure that you have no memory leaks.
-* 
+
 ##### UML design document. (2 points)
 
 ## Requirement Notes
