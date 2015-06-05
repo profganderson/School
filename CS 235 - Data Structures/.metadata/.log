@@ -112,3 +112,191 @@ java.lang.IllegalArgumentException:
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+!SESSION 2015-06-05 09:27:19.117 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.719
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/plugins/org.eclipse.sdk_3.8.1.dist.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.728
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.cvs.source_1.3.200.dist-7B79FJJ9exZ_.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.730
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.sdk_3.8.1.dist-7Q85DOBoMDDlUAIWaDFz-Q01HRDnJmlM-5LmBHbPXfOgk.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.731
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.help.source_1.4.1.dist-8v7nFQYFCmSPZXHoT2597H.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.732
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.equinox.p2.user.ui.source_2.2.0.dist-62DG8ltBZLdOsDwFEi8m9FbLOK8.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.733
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.jdt.source_3.8.1.dist-8-8nFqrFFgQGJ.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.734
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde_3.8.1.dist-7c7vFiyFALX8A.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.736
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.rcp.source_3.8.1.dist-8LA2GODFTJUDJ21934.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.737
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde.source_3.8.1.dist-7c7vFiyFALX8A.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:28:39.738
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.platform.source_3.8.1.dist-A8F8_IVRG4VZSCmeloKVfCrtIFotGyJZcMPL9.
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2015-06-05 09:29:16.915
+!MESSAGE An error occurred while collecting items to be installed
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2015-06-05 09:29:16.915
+!MESSAGE session context was:(profile=epp.package.java, phase=org.eclipse.equinox.internal.p2.engine.phases.Collect, operand=, action=).
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.build.crossgcc,1.1.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.build.crossgcc,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.debug.mi.core,7.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.debug.mi.ui,6.1.1.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.debug.ui.memory,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.debug.ui.memory.floatingpoint,1.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.debug.ui.memory.memorybrowser,1.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.debug.ui.memory.search,1.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.debug.ui.memory.traditional,1.2.1.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.debug.ui.memory.transport,2.1.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.dsf.gdb,4.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.dsf.gdb.multicorevisualizer.ui,1.1.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.dsf.gdb.ui,2.4.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.gdb,7.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.gdb,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.gdb.ui,7.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.gnu.build,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.gnu.debug,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.gnu.dsf,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.gnu.multicorevisualizer,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.launch,7.1.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.make.core,7.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.make.ui,7.2.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.managedbuilder.core,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.managedbuilder.gnu.ui,8.2.1.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.testsrunner,7.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.915
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.testsrunner.boost,7.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.916
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.testsrunner.feature,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.916
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.testsrunner.gtest,7.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.916
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.testsrunner.qttest,7.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.916
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.visualizer.core,1.0.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.916
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.cdt.visualizer,8.3.0.dist
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2015-06-05 09:29:16.916
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.cdt.visualizer.ui,1.0.0.dist
+!SESSION 2015-06-05 09:34:39.174 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.443
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/plugins/org.eclipse.sdk_3.8.1.dist.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.446
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.cvs.source_1.3.200.dist-7B79FJJ9exZ_.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.447
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.sdk_3.8.1.dist-7Q85DOBoMDDlUAIWaDFz-Q01HRDnJmlM-5LmBHbPXfOgk.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.449
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.help.source_1.4.1.dist-8v7nFQYFCmSPZXHoT2597H.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.450
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.equinox.p2.user.ui.source_2.2.0.dist-62DG8ltBZLdOsDwFEi8m9FbLOK8.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.452
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.jdt.source_3.8.1.dist-8-8nFqrFFgQGJ.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.453
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde_3.8.1.dist-7c7vFiyFALX8A.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.454
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.rcp.source_3.8.1.dist-8LA2GODFTJUDJ21934.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.456
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde.source_3.8.1.dist-7c7vFiyFALX8A.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:34:40.457
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.platform.source_3.8.1.dist-A8F8_IVRG4VZSCmeloKVfCrtIFotGyJZcMPL9.
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 4 0 2015-06-05 09:40:30.660
+!MESSAGE org.eclipse.equinox.internal.p2.touchpoint.natives.actions.UnzipAction error unzipping zipfile: /users/guest/m/mocklera/.eclipse/org.eclipse.platform_4.4.2_1473617060_linux_gtk_x86_64/p2/org.eclipse.equinox.p2.core/cache/binary/org.eclipse.cdt_root_8.6.0.201502131403destination: /opt/eclipse
+!SESSION 2015-06-05 09:40:36.382 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.743
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/plugins/org.eclipse.sdk_3.8.1.dist.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.745
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.cvs.source_1.3.200.dist-7B79FJJ9exZ_.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.746
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.sdk_3.8.1.dist-7Q85DOBoMDDlUAIWaDFz-Q01HRDnJmlM-5LmBHbPXfOgk.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.747
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.help.source_1.4.1.dist-8v7nFQYFCmSPZXHoT2597H.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.749
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.equinox.p2.user.ui.source_2.2.0.dist-62DG8ltBZLdOsDwFEi8m9FbLOK8.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.750
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.jdt.source_3.8.1.dist-8-8nFqrFFgQGJ.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.751
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde_3.8.1.dist-7c7vFiyFALX8A.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.753
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.rcp.source_3.8.1.dist-8LA2GODFTJUDJ21934.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.754
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde.source_3.8.1.dist-7c7vFiyFALX8A.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 09:40:38.756
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.platform.source_3.8.1.dist-A8F8_IVRG4VZSCmeloKVfCrtIFotGyJZcMPL9.
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-06-05 09:41:18.102
+!MESSAGE Indexed 'Lab5-3DMaze' (2 sources, 149 headers) in 3 sec: 13,521 declarations; 24,323 references; 0 unresolved inclusions; 0 syntax errors; 2 unresolved names (0.0053%)

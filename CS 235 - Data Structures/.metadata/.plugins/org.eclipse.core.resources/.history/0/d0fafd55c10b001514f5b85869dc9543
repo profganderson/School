@@ -1,0 +1,24 @@
+#pragma once
+
+#include "Node.h"
+
+Node::Node(int data) {
+	left_child = NULL;
+	right_child = NULL;
+}
+
+Node::~Node() {
+
+}
+
+int Node::getData() {
+	return 0;
+}
+
+NodeInterface * Node::getLeftChild() {
+	return left_child;
+}
+
+NodeInterface * Node::getRightChild() {
+	return right_child;
+}
