@@ -1,9 +1,9 @@
 #include "Node.h"
 
 Node::Node(int data) {
-	left_child = NULL;
-	right_child = NULL;
-	data = data;
+	this->left_child = NULL;
+	this->right_child = NULL;
+	this->data = data;
 }
 
 Node::~Node() {
@@ -14,10 +14,10 @@ int Node::getData() {
 	return data;
 }
 
-NodeInterface * Node::getLeftChild() {
+Node* Node::getLeftChild() {
 	return left_child;
 }
 
-NodeInterface * Node::getRightChild() {
+Node* Node::getRightChild() {
 	return right_child;
 }
