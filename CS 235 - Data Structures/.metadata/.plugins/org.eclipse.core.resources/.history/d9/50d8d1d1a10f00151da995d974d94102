@@ -1,0 +1,28 @@
+/*
+ * GPA.h
+ *
+ *  Created on: Jun 10, 2015
+ *      Author: mocklera
+ */
+
+#ifndef STUDENT_CODE_GPA_H_
+#define STUDENT_CODE_GPA_H_
+
+#include "GPAInterface.h"
+#include "Student.h"
+
+class GPA: public GPAInterface {
+public:
+	GPA();
+	virtual ~GPA();
+
+	virtual map<unsigned long long int,Student*> getMap();
+	virtual set<Student*,Comparator> getSet();
+	virtual bool importStudents(string mapFileName, string setFileName);
+	virtual bool importGrades(string fileName);
+	virtual string querySet(string fileName);
+	virtual string queryMap(string fileName);
+	virtual void clear();
+};
+
+#endif /* STUDENT_CODE_GPA_H_ */

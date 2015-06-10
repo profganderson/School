@@ -1,0 +1,146 @@
+/*
+ * GPA.cpp
+ *
+ *  Created on: Jun 10, 2015
+ *      Author: mocklera
+ */
+
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include "GPA.h"
+
+GPA::GPA() {
+
+}
+
+GPA::~GPA() {
+	clear();
+}
+
+map<unsigned long long int,StudentInterface*> GPA::getMap() {
+	return student_map;
+}
+
+set<StudentInterface*,Comparator> GPA::getSet() {
+	return student_set;
+}
+
+bool GPA::importStudents(string mapFileName, string setFileName) {
+	bool imported = true;
+
+	fstream set_file;
+	fstream map_file;
+
+	set_file.open(setFileName.c_str());
+	map_file.open(mapFileName.c_str());
+
+	// Check for invalid filenames
+	if (set_file.fail() || map_file.fail()) {
+		imported = false;
+	}
+	else {
+		// Make sure both files are the right length
+		if (check_file_length(mapFileName, 4) && check_file_length(setFileName, 4)) {
+
+			// Importing the map file
+			while(!map_file.eof()) {
+				string id, name, address, phone;
+				// Wrap it all in an if statement to protect from grabbing trailing newlines
+				if (getline(map_file, id) &&
+						getline(map_file, name) &&
+						getline(map_file, address) &&
+						getline(map_file, phone)) {
+
+					// Convert the string ID to an unsigned long long int
+					unsigned long long int id_as_ulli = string_to_ulli(id);
+
+					// Add the student to the map
+					student_map[id_as_ulli] = new Student(id_as_ulli, name, address, phone);
+				}
+			}
+
+			// Importing the set file
+			while(!set_file.eof()) {
+				string id, name, address, phone;
+				// Protect from trailing whitespace
+				if (getline(set_file, id) &&
+						getline(set_file, name) &&
+						getline(set_file, address) &&
+						getline(set_file, phone)) {
+					// Convert the string ID to an unsigned long long int
+					unsigned long long int id_as_ulli = string_to_ulli(id);
+
+					// Add the student to the set
+					student_set.insert(new Student(id_as_ulli, name, address, phone));
+				}
+
+			}
+		}
+		else {
+			imported = false;
+		}
+	}
+
+	set_file.close();
+	map_file.close();
+	return imported;
+}
+
+bool GPA::importGrades(string fileName) {
+	bool imported = false;
+
+	fstream grade_file;
+	grade_file.open(fileName.c_str());
+
+	// if the file exists
+	if( !grade_file.fail() ) {
+		// Check the file length
+		if (check_file_length(fileName, 3)) {
+
+		}
+	}
+
+	return imported;
+}
+
+string GPA::querySet(string fileName) {
+	return "";
+}
+
+string GPA::queryMap(string fileName) {
+	return "";
+}
+
+void GPA::clear() {
+	for ( StudentInterface* student : student_set ) {
+		delete student;
+	}
+	student_set.clear();
+
+	for ( pair<unsigned long long int, StudentInterface*> student : student_map ) {
+		delete student.second;
+	}
+	student_map.clear();
+}
+
+bool GPA::check_file_length(string file_name, int input_length) {
+	fstream fs;
+	fs.open(file_name.c_str());
+	int length = 0;
+	string temp;
+
+	while( getline(fs, temp) ) {
+		length++;
+	}
+
+	fs.close();
+	return (length % input_length == 0);
+}
+
+unsigned long long int GPA::string_to_ulli(string str) {
+	unsigned long long int ulli;
+	stringstream convert( str );
+	convert >> ulli;
+	return ulli;
+}

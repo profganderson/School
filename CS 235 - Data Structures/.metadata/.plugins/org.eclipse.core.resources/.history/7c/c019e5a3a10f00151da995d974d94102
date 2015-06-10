@@ -1,0 +1,34 @@
+/*
+ * Student.cpp
+ *
+ *  Created on: Jun 10, 2015
+ *      Author: mocklera
+ */
+
+#include "Student.h"
+
+Student::Student() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Student::~Student() {
+	// TODO Auto-generated destructor stub
+}
+
+unsigned long long int Student::getID() {
+	unsigned long long int id;
+	return id;
+}
+
+string Student::getName() {
+	return "";
+}
+
+void Student::addGPA(double classGrade) {
+
+}
+
+string Student::toString() {
+	return "";
+}

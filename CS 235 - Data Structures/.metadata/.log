@@ -300,3 +300,50 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp
 
 !ENTRY org.eclipse.cdt.core 1 0 2015-06-05 09:41:18.102
 !MESSAGE Indexed 'Lab5-3DMaze' (2 sources, 149 headers) in 3 sec: 13,521 declarations; 24,323 references; 0 unresolved inclusions; 0 syntax errors; 2 unresolved names (0.0053%)
+!SESSION 2015-06-05 14:42:45.357 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.186
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/plugins/org.eclipse.sdk_3.8.1.dist.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.189
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.help.source_1.4.1.dist-8v7nFQYFCmSPZXHoT2597H.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.190
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.equinox.p2.user.ui.source_2.2.0.dist-62DG8ltBZLdOsDwFEi8m9FbLOK8.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.192
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.jdt.source_3.8.1.dist-8-8nFqrFFgQGJ.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.193
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.cvs.source_1.3.200.dist-7B79FJJ9exZ_.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.195
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde_3.8.1.dist-7c7vFiyFALX8A.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.197
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.sdk_3.8.1.dist-7Q85DOBoMDDlUAIWaDFz-Q01HRDnJmlM-5LmBHbPXfOgk.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.198
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.rcp.source_3.8.1.dist-8LA2GODFTJUDJ21934.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.200
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.platform.source_3.8.1.dist-A8F8_IVRG4VZSCmeloKVfCrtIFotGyJZcMPL9.
+
+!ENTRY org.eclipse.equinox.p2.publisher.eclipse 4 0 2015-06-05 14:42:52.202
+!MESSAGE Unable to acquire PluginConverter service during generation for: /usr/share/eclipse/dropins/sdk/features/org.eclipse.pde.source_3.8.1.dist-7c7vFiyFALX8A.
+!SESSION 2015-06-10 12:31:38.059 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-06-10 12:33:12.516
+!MESSAGE Indexed 'Lab7-MapsAndSets' (0 sources, 0 headers) in 0.002 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)

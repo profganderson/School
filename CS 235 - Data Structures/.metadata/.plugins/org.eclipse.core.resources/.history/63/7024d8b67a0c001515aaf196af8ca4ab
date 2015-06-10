@@ -1,0 +1,23 @@
+#include "Node.h"
+
+Node::Node(int data) {
+	left_child = NULL;
+	right_child = NULL;
+	data = data;
+}
+
+Node::~Node() {
+
+}
+
+int Node::getData() {
+	return data;
+}
+
+Node* Node::getLeftChild() {
+	return left_child;
+}
+
+Node* Node::getRightChild() {
+	return right_child;
+}
