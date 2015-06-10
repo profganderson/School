@@ -27,10 +27,10 @@ public:
 private:
 	unsigned long long int id;
 	string name;
-	double total_gpa;
-	double num_classes;
 	string address;
 	string tel;
+	double total_gpa;
+	double num_classes;
 };
 
 #endif /* STUDENT_CODE_STUDENT_H_ */
