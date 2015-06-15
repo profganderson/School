@@ -1,0 +1,19 @@
+/*
+ * QS.h
+ *
+ *  Created on: Jun 15, 2015
+ *      Author: mocklera
+ */
+
+#ifndef STUDENT_CODE_QS_H_
+#define STUDENT_CODE_QS_H_
+
+#include "QSInterface.h"
+
+class QS: public QSInterface {
+public:
+	QS();
+	virtual ~QS();
+};
+
+#endif /* STUDENT_CODE_QS_H_ */

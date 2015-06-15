@@ -1,0 +1,124 @@
+/*
+ * QS.cpp
+ *
+ *  Created on: Jun 15, 2015
+ *      Author: mocklera
+ */
+
+#include <sstream>
+#include "QS.h"
+
+void QS::sortAll() {
+	sortAll_recursive(0, size - 1);
+}
+
+void QS::sortAll_recursive(int l, int r) {
+
+}
+
+int QS::medianOfThree(int l, int r) {
+	int mid;
+
+	if( arr == NULL ||
+			l < 0 ||
+			r > capacity - 1 ||
+			l > r) {
+		mid = -1;
+	}
+	else {
+		// 1. Calculate the middle index by averaging the given left and right indices
+		mid = (l + r) / 2;
+
+		// 2. Bubble-sorts the left, right, and middle
+		while ( l > mid || mid > r || l > r ) {
+			if ( l > mid ) {
+				swap(l, mid);
+			}
+			else if ( mid > r ) {
+				swap( mid, r );
+			}
+			else if ( l > r ) {
+				swap( l, r );
+			}
+		}
+	}
+
+	return mid;
+}
+
+int QS::partition(int l, int r, int pivotIndex) {
+	int up = l + 1;
+	int down = r;
+
+	swap(pivotIndex, l);
+	// walk through the array
+	while(up < down) {
+		while (arr[up] <= arr[l] && up <= r) {
+			up++;
+		}
+		while (arr[down] > arr[l] && down >= l) {
+			down--;
+		}
+		// Swap them as long as they haven't crossed
+		if( down > up ) {
+			swap(arr[up], arr[down]);
+		}
+	}
+	swap(arr[l], arr[down]); // Do the last swap (after up and down have crossed)
+
+	// Down is the new middle
+	return down;
+}
+
+string QS::getArray() {
+	stringstream arr_string;
+
+	// < size - 1 so the last value doesn't get a comma after it
+	for (int i = 0; i < size - 1; i++) {
+		arr_string << arr[i] << ",";
+	}
+	arr_string << arr[size - 1]; // Add the final element
+
+	return arr_string.str();
+}
+
+int QS::getSize() {
+	return size;
+}
+
+void QS::addToArray(int value) {
+	if (arr != NULL && size < capacity) {
+		arr[size] = value;
+		size++;
+	}
+}
+
+bool QS::createArray(int capacity) {
+	bool created;
+	if (capacity < 0) {
+		created = false;
+	} else {
+		if ( arr != NULL ) {
+			clear();
+		}
+		arr = new int[capacity];
+		this->capacity = capacity;
+		created = true;
+	}
+	return created;
+}
+
+void QS::clear() {
+	if (arr != NULL) {
+		delete[] arr;
+		arr = NULL;
+		size = 0;
+		capacity = 0;
+	}
+}
+
+void QS::swap(int l, int r) {
+	int old = arr[l];
+	arr[l] = arr[r];
+	arr[r] = old;
+}
