@@ -13,16 +13,29 @@ void QS::sortAll() {
 	sortAll_recursive(0, size - 1);
 }
 
+/*		SORTALL
+ *			Make a void sortall_recursive(int L, int R)
+ *				if (l == r)
+ *					return
+ *				if (l + 1 == r)
+ *					media of three(l, r)
+ *					return
+ *				if (l + 2 == r)
+ *					median of three(l, r)
+ *					return
+ *				else
+ *					int mid = median of three(l, r)
+ *					mid = partition(l, r, mid)
+ *					sortall_recursive(l, mid - 1)
+ *					sortall_recursive(mid + 1, r)
+ */
 void QS::sortAll_recursive(int l, int r) {
-	// If they are the same, no sorting to be done.
 	if (l == r)
 		return;
-	// If it is within 3, then it will be sorted by the median of three bubble sort
 	else if (l + 1 == r || l + 2 == r) {
 		medianOfThree(l, r);
 		return;
 	}
-	// Else, find the median, partition, and sort recursively.
 	else {
 		int mid = medianOfThree(l, r);
 		mid = partition(l, r, mid);
@@ -34,7 +47,6 @@ void QS::sortAll_recursive(int l, int r) {
 int QS::medianOfThree(int l, int r) {
 	int mid;
 
-	// Check for invalid inputs / cases
 	if( arr == NULL ||
 			l < 0 ||
 			r > capacity - 1 ||
@@ -63,9 +75,9 @@ int QS::medianOfThree(int l, int r) {
 }
 
 int QS::partition(int l, int r, int pivotIndex) {
+	cout << "partition" << endl;
 	int up, down;
 
-	// Check for invalid input / cases
 	if (arr == NULL ||
 			l < 0 ||
 			r > size - 1 ||
@@ -76,7 +88,7 @@ int QS::partition(int l, int r, int pivotIndex) {
 	}
 	else {
 		up = l + 1;
-		down = r - 1;
+		down = r;
 
 		swap(pivotIndex, l);
 		// walk through the array

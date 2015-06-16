@@ -10,53 +10,6 @@
 
 #include "QSInterface.h"
 
-/*
- * TODO: help session
- *
- * 	QUICKSORT
- *
- *		PARTITION
- * 		   Swap pivot and left
- * 		   Make two temporary vars (up and down)
- * 		   	compare the value of up with the pivot index value
- * 		   		while (up < down)
- * 		   			while (arr[up] <= arr[left])
- * 		   				up++
- * 		   			while(arr[down] > arr[left])
- * 		   				down--
- * 		   			swap up and down (unless they have crossed, then you handle outside the loop)
- * 		   		swap L and down (outside the loop)
- * 		   		return down
- * 		   Add extra conditions so you don't go past L and R. (down > L, up < R)
- *
- *		SORTALL
- *			Make a void sortall_recursive(int L, int R)
- *				if (l == r)
- *					return
- *				if (l + 1 == r)
- *					media of three(l, r)
- *					return
- *				if (l + 2 == r)
- *					median of three(l, r)
- *					return
- *				else
- *					int mid = median of three(l, r)
- *					mid = partition(l, r, mid)
- *					sortall_recursive(l, mid - 1)
- *					sortall_recursive(mid + 1, r)
- *
- *		SWAP
- *			you shouldn't use stdlib swap - write a swap function
- *				int old = arr[l];
- *				arr[l] = arr[r];
- *				arr[r] = old;
- *
- *		SORTALL
- *			Start with L = 0 and R = size-1 (NOT capacity)
- *			Then call recursive func
- *
- */
-
 class QS: public QSInterface {
 public:
 	QS() { arr = NULL; size = 0; capacity = 0; };
