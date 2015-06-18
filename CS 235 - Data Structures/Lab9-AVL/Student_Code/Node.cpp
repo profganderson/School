@@ -74,12 +74,12 @@ int Node::get_balance() {
 	int balance, left_height, right_height;
 
 	if ( left_child != NULL )
-		left_height = get_max_height(left_child);
+		left_height = get_max_height(left_child) + 1;
 	else
 		left_height = 0;
 
 	if ( right_child != NULL )
-		right_height = get_max_height(left_child);
+		right_height = get_max_height(left_child) + 1;
 	else
 		right_height = 0;
 
