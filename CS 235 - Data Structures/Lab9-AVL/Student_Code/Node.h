@@ -24,10 +24,8 @@ public:
 	virtual Node* getRightChild();
 	virtual int getHeight();
 
-	//asdfasdfasdfasdf
-	int get_balance(); // bfactor
-	void set_height(); // fixheight
-
+	int get_max_height(Node* current);
+	int get_balance();
 };
 
 #endif /* STUDENT_CODE_NODE_H_ */

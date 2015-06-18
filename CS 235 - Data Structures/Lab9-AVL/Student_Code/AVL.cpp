@@ -38,6 +38,7 @@ bool AVL::add_recursive(int data, Node*& current) {
 	bool added;
 	if (current == NULL) {
 		current = new Node(data);
+		height_changed = true;
 		added = true;
 	}
 	else {
@@ -46,8 +47,6 @@ bool AVL::add_recursive(int data, Node*& current) {
 		else
 			added = add_recursive(data, current->right_child);
 	}
-	// Balance the tree
-	balance(current);
 	return added;
 }
 
@@ -166,41 +165,33 @@ void AVL::clear(Node*& node) {
 	}
 }
 
+void AVL::balance(Node* n) {
+	int balance = n->get_balance();
+	if (balance == 2) {
+		if(n->right_child->get_balance() < 0)
+			rotate_right(n->right_child);
+		rotate_left(n);
+	}
 
+	if (balance == -2) {
+		if(n->left_child->get_balance() > 0)
+			rotate_left(n->left_child);
+		rotate_right(n);
+	}
+}
 
-
-Node* AVL::rotate_right(Node* n) {
+void AVL::rotate_right(Node*& n) {
 	Node* temp = n->left_child;
 	n->left_child = temp->right_child;
 	temp->right_child = n;
-	n->set_height();
-	temp->set_height();
-	return temp;
+	n = temp;
 }
 
-Node* AVL::rotate_left(Node* n) {
+void AVL::rotate_left(Node*& n) {
 	Node* temp = n->right_child;
 	n->right_child = temp->left_child;
 	temp->left_child = n;
-	n->set_height();
-	temp->set_height();
-	return temp;
-}
-
-Node* AVL::balance(Node* n) {
-	n->set_height();
-	if (n->get_balance() == 2) {
-		if ( n->right_child->get_balance() < 0 )
-			n->right_child = rotate_right(n->right_child);
-		return rotate_left(n);
-	}
-	
-	if (n->get_balance() == -2) {
-		if(n->left_child->get_balance() > 0)
-			n->left_child = rotate_left(n->left_child);
-		return rotate_right(n);
-	}
-	return n;
+	n = temp;
 }
 
 
