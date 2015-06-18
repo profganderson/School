@@ -65,7 +65,7 @@ bool AVL::add_recursive(int data, Node*& current) {
 }
 
 bool AVL::remove(int data) {
-	cout << "===AVL Remove" << endl;
+	cout << "===AVL Remove " << data << endl;
 	bool removed;
 
 	if ( find(data, root) ) {
@@ -80,15 +80,13 @@ bool AVL::remove(int data) {
 
 bool AVL::remove_recursive(int data, Node*& current) {
 	bool removed;
-	if (data == 1)
-		cout << "      Remove Recursive with 1" << endl;
 	// Once you've arrived to the correct node, delete the node
 	if ( data == current->data ) {
 		// No children
 		if ( current->right_child == NULL && current->left_child == NULL ) {
 			delete current;
 			current = NULL;
-			return true;
+			removed = true;
 		}
 		// One child
 		else if ( (current->right_child == NULL && current->left_child != NULL)
@@ -103,44 +101,51 @@ bool AVL::remove_recursive(int data, Node*& current) {
 
 			delete temp;
 			temp = NULL;
-			return true;
+			removed = true;
 		}
 		// Two children
 		else if ( current->right_child != NULL && current->left_child != NULL ) {
 			// Find the inorder predecessor and put it where the deleted node is.
 				// Deleting, swapping, etc. happens within the inorder_predecessor function
 			removed = inorder_predecessor(current, current->left_child);
-			cout << "      BALANCING" << endl;
-			balance(current->left_child);
 		}
 	}
 	else { // Recurse
 		if (data > current->data) {
 			removed = remove_recursive(data, current->right_child);
-			balance(current);
+			//balance(current);
 		}
 		else {
 			removed = remove_recursive(data, current->left_child);
-			balance(current);
+			//balance(current);
 		}
 	}
+
+	if (current)
+		balance(current);
+
 	return removed;
 }
 
 bool AVL::inorder_predecessor(Node*& n1, Node*& n2) {
 	// If right == NULL, you have found the inorder predecessor
 	//cout << "Inorder predecessor" << endl;
+	bool removed;
 	if ( n2->right_child == NULL ) {
+		cout << "     n1->data = " << n1->data << "; n2->data = " << n2->data << endl;
 		n1->data = n2->data;
 		Node* temp = n2;
 		n2 = n2->left_child;
 		delete temp;
 		temp = NULL;
 		cout << "   Removed the inorder predecessor" << endl;
-		return true;
+		removed = true;
 	} else {
-		return inorder_predecessor(n1, n2->right_child);
+		cout << "          Moving right...." << endl;
+		removed = inorder_predecessor(n1, n2->right_child);
+		balance(n2);
 	}
+	return removed;
 }
 
 bool AVL::find(int data, Node*& current) {
@@ -178,8 +183,9 @@ void AVL::clear(Node*& node) {
 }
 
 void AVL::balance(Node*& n) {
-	cout << "         Balancing..." << endl;
+	cout << "         Balancing node " << n->data << "..." << endl;
 	int balance = n->get_balance();
+	cout << "            " << balance << endl;
 	if (balance == 2) {
 		cout << "         Balance == 2" << endl;
 		if(n->right_child->get_balance() < 0) {

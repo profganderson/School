@@ -5,46 +5,16 @@
  *      Author: mocklera
  */
 
-#include <iostream>
 #include "Node.h"
 
-Node::Node(int data) {
-	cout << "==Node Constructor" << endl;
-	height = 0;
-	left_child = NULL;
-	right_child = NULL;
-	this->data = data;
-}
-
-int Node::getData() {
-	return data;
-}
-
-Node* Node::getLeftChild() {
-	return left_child;
-}
-
-Node* Node::getRightChild() {
-	return right_child;
-}
-
+// Returns the length of the longest path from the node to one of its leaves.
 int Node::getHeight() {
 	int height, left_height, right_height;
 
-	if ( left_child != NULL )
-		left_height = get_max_height(left_child);
-	else
-		left_height = 0;
+	left_height = left_child ? get_max_height(left_child) : 0;
+	right_height = right_child ? get_max_height(right_child) : 0;
 
-	if ( right_child != NULL )
-		right_height = get_max_height(left_child);
-	else
-		right_height = 0;
-
-	if ( right_height > left_height )
-		height = right_height;
-	else
-		height = left_height;
+	height = max(left_height, right_height);
 
 	return height;
 }
@@ -54,15 +24,8 @@ int Node::get_max_height(Node* current) {
 	int right_height = 0;
 	int height = 0;
 
-	if ( current->left_child != NULL ) {
-		left_height = 1;
-		left_height += get_max_height(current->left_child);
-	}
-
-	if ( current->right_child != NULL ) {
-		right_height = 1;
-		right_height += get_max_height(current->right_child);
-	}
+	left_height = current->left_child ? get_max_height(current->left_child) + 1 : 0;
+	right_height = current->right_child ? get_max_height(current->right_child) + 1 : 0;
 
 	if ( right_height > left_height )
 		height = right_height;
@@ -90,11 +53,7 @@ int Node::get_balance() {
 	return balance;
 }
 
-
-
-
-
-
-
-
-
+int Node::max(int x, int y) {
+	int max = (x > y) ? x : y;
+	return max;
+}
