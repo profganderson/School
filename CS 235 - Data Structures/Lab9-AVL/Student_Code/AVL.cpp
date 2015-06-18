@@ -44,8 +44,10 @@ bool AVL::add_recursive(int data, Node*& current) {
 	else {
 		if ( data < current->data )
 			added = add_recursive(data, current->left_child);
+                     balance(current);
 		else
 			added = add_recursive(data, current->right_child);
+                     balance(current);
 	}
 	return added;
 }
