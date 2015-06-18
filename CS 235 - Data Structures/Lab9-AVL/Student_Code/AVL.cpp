@@ -5,22 +5,32 @@
  *      Author: mocklera
  */
 
+#include <iostream>
 #include "AVL.h"
 
 AVL::AVL() {
+	cout << "===AVL Constructor" << endl;
 	root = NULL;
 }
 
 AVL::~AVL() {
+	cout << "===AVL Destructor" << endl;
 	clear(root);
 }
 
 Node* AVL::getRootNode() {
+	cout << "===AVL Get Root Node";
+
+	if (root)
+		cout << "(" << root->data << ")";
+
+	cout << endl;
 	return root;
 }
 
 bool AVL::add(int data) {
-	bool added;
+	cout << "===AVL Add " << data << endl;
+	bool added = false;
 
 	if( root == NULL ) {
 		root = new Node(data);
@@ -42,17 +52,20 @@ bool AVL::add_recursive(int data, Node*& current) {
 		added = true;
 	}
 	else {
-		if ( data < current->data )
+		if ( data < current->data ) {
 			added = add_recursive(data, current->left_child);
-                     balance(current);
-		else
+            balance(current);
+		}
+		else {
 			added = add_recursive(data, current->right_child);
-                     balance(current);
+            balance(current);
+		}
 	}
 	return added;
 }
 
 bool AVL::remove(int data) {
+	cout << "===AVL Remove" << endl;
 	bool removed;
 
 	if ( find(data, root) ) {
@@ -67,6 +80,8 @@ bool AVL::remove(int data) {
 
 bool AVL::remove_recursive(int data, Node*& current) {
 	bool removed;
+	if (data == 1)
+		cout << "      Remove Recursive with 1" << endl;
 	// Once you've arrived to the correct node, delete the node
 	if ( data == current->data ) {
 		// No children
@@ -94,42 +109,37 @@ bool AVL::remove_recursive(int data, Node*& current) {
 		else if ( current->right_child != NULL && current->left_child != NULL ) {
 			// Find the inorder predecessor and put it where the deleted node is.
 				// Deleting, swapping, etc. happens within the inorder_predecessor function
-			return inorder_predecessor(current, current->left_child);
+			removed = inorder_predecessor(current, current->left_child);
+			cout << "      BALANCING" << endl;
+			balance(current->left_child);
 		}
 	}
 	else { // Recurse
 		if (data > current->data) {
-			return remove_recursive(data, current->right_child);
+			removed = remove_recursive(data, current->right_child);
+			balance(current);
 		}
 		else {
-			return remove_recursive(data, current->left_child);
+			removed = remove_recursive(data, current->left_child);
+			balance(current);
 		}
 	}
+	return removed;
 }
-
-// bool AVL::check_balance(Node*& node) {
-// 	bool balanced = true;
-// 	if ( (node->right_height - node->left_height) > 1 || (node->right_height - node->left_height) < 1 )
-// 		balanced = false;
-
-// 	if (node->right_child != NULL)
-// 		check_balance(node->right_child);
-
-// 	if (node->left_child != NULL)
-// 		check_balance(node->left_child);
-// }
 
 bool AVL::inorder_predecessor(Node*& n1, Node*& n2) {
 	// If right == NULL, you have found the inorder predecessor
+	//cout << "Inorder predecessor" << endl;
 	if ( n2->right_child == NULL ) {
 		n1->data = n2->data;
 		Node* temp = n2;
 		n2 = n2->left_child;
 		delete temp;
 		temp = NULL;
+		cout << "   Removed the inorder predecessor" << endl;
 		return true;
 	} else {
-		inorder_predecessor(n1, n2->right_child);
+		return inorder_predecessor(n1, n2->right_child);
 	}
 }
 
@@ -167,15 +177,19 @@ void AVL::clear(Node*& node) {
 	}
 }
 
-void AVL::balance(Node* n) {
+void AVL::balance(Node*& n) {
+	cout << "         Balancing..." << endl;
 	int balance = n->get_balance();
 	if (balance == 2) {
-		if(n->right_child->get_balance() < 0)
+		cout << "         Balance == 2" << endl;
+		if(n->right_child->get_balance() < 0) {
 			rotate_right(n->right_child);
+		}
 		rotate_left(n);
 	}
 
 	if (balance == -2) {
+		cout << "         Balance == -2" << endl;
 		if(n->left_child->get_balance() > 0)
 			rotate_left(n->left_child);
 		rotate_right(n);
@@ -183,6 +197,7 @@ void AVL::balance(Node* n) {
 }
 
 void AVL::rotate_right(Node*& n) {
+	cout << "      Rotate Right" << endl;
 	Node* temp = n->left_child;
 	n->left_child = temp->right_child;
 	temp->right_child = n;
@@ -190,6 +205,7 @@ void AVL::rotate_right(Node*& n) {
 }
 
 void AVL::rotate_left(Node*& n) {
+	cout << "      Rotate Left" << endl;
 	Node* temp = n->right_child;
 	n->right_child = temp->left_child;
 	temp->left_child = n;

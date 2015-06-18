@@ -5,9 +5,11 @@
  *      Author: mocklera
  */
 
+#include <iostream>
 #include "Node.h"
 
 Node::Node(int data) {
+	cout << "==Node Constructor" << endl;
 	height = 0;
 	left_child = NULL;
 	right_child = NULL;

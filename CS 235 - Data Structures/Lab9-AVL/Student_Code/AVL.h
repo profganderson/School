@@ -21,14 +21,14 @@ public:
 
 private:
 	Node* root;
-	bool height_changed;
+	bool height_changed = false;
 
 	bool add_recursive(int data, Node*& current);
 	bool remove_recursive(int data, Node*& current);
 	bool inorder_predecessor(Node*& n1, Node*& n2);
 	bool find(int data, Node*& current);
 	void clear(Node*& node);
-	void balance(Node* n);
+	void balance(Node*& n);
 
 	// asdfasdf
 	void rotate_right(Node*& n);
