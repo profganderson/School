@@ -35,22 +35,20 @@ bool AVL::add(int data) {
 }
 
 bool AVL::add_recursive(int data, Node*& current) {
+	bool added;
 	if (current == NULL) {
 		current = new Node(data);
-		increase = true;
-		return true;
+		added = true;
 	}
 	else {
-		if(data > current->data) {
-			return add_recursive(data, current->right_child);
-		}
-		else {
-			return add_recursive(data, current->left_child);
-			if ( increase ) {
-
-			}
-		}
+		if ( data < current->data )
+			added = add_recursive(data, current->left_child);
+		else
+			added = add_recursive(data, current->right_child);
 	}
+	// Balance the tree
+	balance(current);
+	return added;
 }
 
 bool AVL::remove(int data) {
@@ -108,17 +106,17 @@ bool AVL::remove_recursive(int data, Node*& current) {
 	}
 }
 
-bool AVL::check_balance(Node*& node) {
-	bool balanced = true;
-	if ( (node->right_height - node->left_height) > 1 || (node->right_height - node->left_height) < 1 )
-		balanced = false;
+// bool AVL::check_balance(Node*& node) {
+// 	bool balanced = true;
+// 	if ( (node->right_height - node->left_height) > 1 || (node->right_height - node->left_height) < 1 )
+// 		balanced = false;
 
-	if (node->right_child != NULL)
-		check_balance(node->right_child);
+// 	if (node->right_child != NULL)
+// 		check_balance(node->right_child);
 
-	if (node->left_child != NULL)
-		check_balance(node->left_child);
-}
+// 	if (node->left_child != NULL)
+// 		check_balance(node->left_child);
+// }
 
 bool AVL::inorder_predecessor(Node*& n1, Node*& n2) {
 	// If right == NULL, you have found the inorder predecessor
@@ -167,3 +165,67 @@ void AVL::clear(Node*& node) {
 		node = NULL;
 	}
 }
+
+
+
+
+Node* AVL::rotate_right(Node* n) {
+	Node* temp = n->left_child;
+	n->left_child = temp->right_child;
+	temp->right_child = n;
+	n->set_height();
+	temp->set_height();
+	return temp;
+}
+
+Node* AVL::rotate_left(Node* n) {
+	Node* temp = n->right_child;
+	n->right_child = temp->left_child;
+	temp->left_child = n;
+	n->set_height();
+	temp->set_height();
+	return temp;
+}
+
+Node* AVL::balance(Node* n) {
+	n->set_height();
+	if (n->get_balance() == 2) {
+		if ( n->right_child->get_balance() < 0 )
+			n->right_child = rotate_right(n->right_child);
+		return rotate_left(n);
+	}
+	
+	if (n->get_balance() == -2) {
+		if(n->left_child->get_balance() > 0)
+			n->left_child = rotate_left(n->left_child);
+		return rotate_right(n);
+	}
+	return n;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,10 +13,9 @@
 class Node: public NodeInterface {
 public:
 	int data;
+	int height;
 	Node* left_child;
 	Node* right_child;
-	int left_height;
-	int right_height;
 
 	Node(int data);
 	virtual ~Node() {};
@@ -24,6 +23,11 @@ public:
 	virtual Node* getLeftChild();
 	virtual Node* getRightChild();
 	virtual int getHeight();
+
+	//asdfasdfasdfasdf
+	int get_balance(); // bfactor
+	void set_height(); // fixheight
+
 };
 
 #endif /* STUDENT_CODE_NODE_H_ */
