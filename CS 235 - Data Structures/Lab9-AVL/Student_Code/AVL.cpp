@@ -5,37 +5,17 @@
  *      Author: mocklera
  */
 
-#include <iostream>
 #include "AVL.h"
 
-AVL::AVL() {
-	cout << "===AVL Constructor" << endl;
-	root = NULL;
-}
-
-AVL::~AVL() {
-	cout << "===AVL Destructor" << endl;
-	clear(root);
-}
-
-Node* AVL::getRootNode() {
-	cout << "===AVL Get Root Node";
-
-	if (root)
-		cout << "(" << root->data << ")";
-
-	cout << endl;
-	return root;
-}
-
 bool AVL::add(int data) {
-	cout << "===AVL Add " << data << endl;
 	bool added = false;
 
+	// Create a new root if there isn't one
 	if( root == NULL ) {
 		root = new Node(data);
 		added = true;
 	}
+	// Recursively add unless it is a duplicate
 	else if ( !find(data, root) ) {
 		add_recursive(data, root);
 		added = true;
@@ -46,34 +26,32 @@ bool AVL::add(int data) {
 
 bool AVL::add_recursive(int data, Node*& current) {
 	bool added;
+
+	// If you are on NULL, insert there
 	if (current == NULL) {
 		current = new Node(data);
-		height_changed = true;
 		added = true;
 	}
+	// Otherwise, traverse the tree until you find the correct NULL pointer
 	else {
 		if ( data < current->data ) {
 			added = add_recursive(data, current->left_child);
-            balance(current);
 		}
 		else {
 			added = add_recursive(data, current->right_child);
-            balance(current);
 		}
+		// Balance the tree as you come out of the recursion (start from leaves, move to root)
+		balance(current);
 	}
 	return added;
 }
 
 bool AVL::remove(int data) {
-	cout << "===AVL Remove " << data << endl;
 	bool removed;
 
-	if ( find(data, root) ) {
-		removed = remove_recursive(data, root);
-	}
-	else {
-		removed = false;
-	}
+	// If the value exists, remove it recursively.
+	// Otherwise, return false for a non-existent value
+	removed = find(data, root) ? remove_recursive(data, root) : false;
 
 	return removed;
 }
@@ -113,14 +91,14 @@ bool AVL::remove_recursive(int data, Node*& current) {
 	else { // Recurse
 		if (data > current->data) {
 			removed = remove_recursive(data, current->right_child);
-			//balance(current);
 		}
 		else {
 			removed = remove_recursive(data, current->left_child);
-			//balance(current);
 		}
 	}
 
+	// Balance the Nodes as you come out of the recursion
+	// Wrapped in an if statement in case you are still on the node that was just deleted.
 	if (current)
 		balance(current);
 
@@ -128,35 +106,41 @@ bool AVL::remove_recursive(int data, Node*& current) {
 }
 
 bool AVL::inorder_predecessor(Node*& n1, Node*& n2) {
-	// If right == NULL, you have found the inorder predecessor
-	//cout << "Inorder predecessor" << endl;
 	bool removed;
+
+	// If right == NULL, you have found the inorder predecessor; delete accordingly
 	if ( n2->right_child == NULL ) {
-		cout << "     n1->data = " << n1->data << "; n2->data = " << n2->data << endl;
 		n1->data = n2->data;
 		Node* temp = n2;
 		n2 = n2->left_child;
 		delete temp;
 		temp = NULL;
-		cout << "   Removed the inorder predecessor" << endl;
 		removed = true;
-	} else {
-		cout << "          Moving right...." << endl;
-		removed = inorder_predecessor(n1, n2->right_child);
-		balance(n2);
 	}
+	// If right != NULL, keep traversing until you find it
+	else {
+		removed = inorder_predecessor(n1, n2->right_child);
+	}
+
+	// Balance the tree as you come out of the recursion. Wrapped in if in case the node was just deleted.
+	if (n2)
+		balance(n2);
+
 	return removed;
 }
 
 bool AVL::find(int data, Node*& current) {
 	bool found;
 
+	// If you've reached the end of the tree and not found it, it doesn't exist
 	if (current == NULL) {
 		found = false;
 	}
+	// Return true if found
 	else if (current->data == data) {
 		found = true;
 	}
+	// Otherwise, continue through the tree recursively
 	else {
 		if ( data > current->data ) {
 			found = find(data, current->right_child);
@@ -170,6 +154,7 @@ bool AVL::find(int data, Node*& current) {
 }
 
 void AVL::clear(Node*& node) {
+	// Delete from the bottom up
 	if ( root != NULL ) {
 		if ( node->left_child != NULL )
 			clear(node->left_child);
@@ -183,19 +168,19 @@ void AVL::clear(Node*& node) {
 }
 
 void AVL::balance(Node*& n) {
-	cout << "         Balancing node " << n->data << "..." << endl;
 	int balance = n->get_balance();
-	cout << "            " << balance << endl;
+
+	// Right unbalanced
 	if (balance == 2) {
-		cout << "         Balance == 2" << endl;
-		if(n->right_child->get_balance() < 0) {
+		// Check for Right-Left
+		if(n->right_child->get_balance() < 0)
 			rotate_right(n->right_child);
-		}
 		rotate_left(n);
 	}
 
+	// Left unbalanced
 	if (balance == -2) {
-		cout << "         Balance == -2" << endl;
+		//  Check for Left-Right
 		if(n->left_child->get_balance() > 0)
 			rotate_left(n->left_child);
 		rotate_right(n);
@@ -203,7 +188,6 @@ void AVL::balance(Node*& n) {
 }
 
 void AVL::rotate_right(Node*& n) {
-	cout << "      Rotate Right" << endl;
 	Node* temp = n->left_child;
 	n->left_child = temp->right_child;
 	temp->right_child = n;
@@ -211,7 +195,6 @@ void AVL::rotate_right(Node*& n) {
 }
 
 void AVL::rotate_left(Node*& n) {
-	cout << "      Rotate Left" << endl;
 	Node* temp = n->right_child;
 	n->right_child = temp->left_child;
 	temp->left_child = n;

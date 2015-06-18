@@ -13,15 +13,17 @@
 
 class AVL: public AVLInterface {
 public:
-	AVL();
-	virtual ~AVL();
-	virtual Node* getRootNode();
+	// Constructor and Destructor
+	AVL() : root(NULL) {};
+	virtual ~AVL() { clear(root); };
+
+	// Inherited from AVLInterface
+	virtual Node* getRootNode() { return root; };
 	virtual bool add(int data);
 	virtual bool remove(int data);
 
 private:
 	Node* root;
-	bool height_changed = false;
 
 	bool add_recursive(int data, Node*& current);
 	bool remove_recursive(int data, Node*& current);
@@ -29,8 +31,6 @@ private:
 	bool find(int data, Node*& current);
 	void clear(Node*& node);
 	void balance(Node*& n);
-
-	// asdfasdf
 	void rotate_right(Node*& n);
 	void rotate_left(Node*& n);
 };

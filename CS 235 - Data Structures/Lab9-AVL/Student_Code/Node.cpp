@@ -11,26 +11,26 @@
 int Node::getHeight() {
 	int height, left_height, right_height;
 
+	// Get the left and right heights from the root
 	left_height = left_child ? get_max_height(left_child) : 0;
 	right_height = right_child ? get_max_height(right_child) : 0;
 
+	// Find the maximum
 	height = max(left_height, right_height);
 
 	return height;
 }
 
+// Recursive version of getHeight() that traverses the tree and counts the height.
+// Could have implemented both as one function if getHeight() weren't inherited.
 int Node::get_max_height(Node* current) {
-	int left_height = 0;
-	int right_height = 0;
-	int height = 0;
+	int left_height, right_height, height;
 
+	// Recursively count up the left and right heights of each node,
+	// then returns the max to be added to the parent.
 	left_height = current->left_child ? get_max_height(current->left_child) + 1 : 0;
 	right_height = current->right_child ? get_max_height(current->right_child) + 1 : 0;
-
-	if ( right_height > left_height )
-		height = right_height;
-	else
-		height = left_height;
+	height = max(left_height, right_height);
 
 	return height;
 }
@@ -38,16 +38,11 @@ int Node::get_max_height(Node* current) {
 int Node::get_balance() {
 	int balance, left_height, right_height;
 
-	if ( left_child != NULL )
-		left_height = get_max_height(left_child) + 1;
-	else
-		left_height = 0;
+	// Find the right and left height of a node
+	left_height = left_child ? get_max_height(left_child) + 1 : 0;
+	right_height = right_child ? get_max_height(right_child) + 1 : 0;
 
-	if ( right_child != NULL )
-		right_height = get_max_height(right_child) + 1;
-	else
-		right_height = 0;
-
+	// Convert the heights to the balance (for deciding if the tree needs rearranging)
 	balance = right_height - left_height;
 
 	return balance;
