@@ -1,6 +1,6 @@
-# Class 1 - June 22, 2015
+### Class 1 - June 22, 2015
 
-## Scanners
+# Scanners
 * Scanning is like low-level parsing
 * Sometimes called a tokenizer, lexer, lexical analyzer
 
@@ -15,9 +15,9 @@ void quote() {
 }
 ```
 
-* The tokenizing process does that, it compiles and reads the code - everything as seperate characters
-    - It goes through and looks for tokens - 1+ characters with special meaning, like `void`, `quote`, `(`, or `)`.
-        + These are of different - keywords, identifiers, punctuation, string literal, number/const. integer
+* The tokenizing process reads the code - everything as seperate characters - and looks for **tokens**
+* **Tokens ** are 1+ characters with special meaning, like `void`, `quote`, `(`, or `)`.
+    - These are of different - keywords, identifiers, punctuation, string literal, number/const. integer
 * They are the natural parts in which to break the input
 
 **How about this?**
@@ -43,11 +43,11 @@ Queries:
 ```
 
 * Keywords
-    - Schemes
+    - Schemes, Facts, Rules, Queries
 * Punctuation
-    - :
+    - : . ? :- ( ) '
 * Identifier
-    - childOf
+    - childOf, marriedTo
 
 ### Lexer, Parser, Interpretor?
 * A **Lexer** receives characters, spits out tokens
