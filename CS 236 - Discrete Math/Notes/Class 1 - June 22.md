@@ -100,30 +100,6 @@ State machines implement the expressions we pull out with regex. Begins with a s
 
 **State Machine for `letter (letter | digit)*`**
 
-![State Machine](/images/state_machine.jpg)
+![State Machine](images/state_machine.jpg)
 
 * `^` or `E` here represents an empty string.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
