@@ -1,11 +1,56 @@
 # Class 1 - June 22, 2015
 
-## Class Info
-* Class Website: beta.cs.byu.edu/~cs236/index.php
-* Text: "Discrete Mathematics and Its Applications" by Rosen (Ed. 7)
-	* Google Play for $30.00
-* Homework assignments are due **in class** on the due date.
+## Scanners
+* Scanning is like low-level parsing
+* Sometimes called a tokenizer, lexer, lexical analyzer
 
-### Projects
-* You get 3 tries to pass off each lab. After that, it is -5 points per failed attempt
-* Make sure you run your projects with Valgrind
+**How do you read and process the following code?**
+
+```c++
+void quote() {
+    print(
+        "First, solve the problem. Then, write the code." +
+        " - John Johnson"
+    );
+}
+```
+
+* The tokenizing process does that, it compiles and reads the code - everything as seperate characters
+    - It goes through and looks for tokens - 1+ characters with special meaning, like `void`, `quote`, `(`, or `)`.
+        + These are of different - keywords, identifiers, punctuation, string literal, number/const. integer
+* They are the natural parts in which to break the input
+
+**How about this?**
+
+```datalog
+Schemes:
+    childOf(X,Y)
+    marriedTo(X,Y)
+Facts:
+    marriedTo('Zed', 'Bea').
+    marriedTo('Jack', 'Jill').
+    marriedTo('Ned','Jan').
+    childOf('Jill','Zed').
+    childOf('Ned','Bea').
+    childOf('Tim','Jack').
+    childOf('Sue','Jack').
+Rules:
+    childOf(X, Y) :- childOf(X,Z), marriedTo(Y,Z).
+    marriedTo(X,Y) :- marriedTo(Y,X).
+Queries:
+    marriedTo('Bea','Zed')?
+    childOf('Jill','Bea')?
+```
+
+* Keywords
+    - Schemes
+* Punctuation
+    - :
+* Identifier
+    - childOf
+
+### Lexer, Parser, Interpretor?
+* A **Lexer** receives characters, spits out tokens
+* A **Parser** reads the tokens, checks grammar/syntax, and spits out a *data structure* representing the different parts of the "sentence". Relates all the tokens to each other.
+    - AST = Abstract Syntax Tree
+* The **Interpreter** takes the data structure from the parser and interprets the instructions. Outputs the results.
