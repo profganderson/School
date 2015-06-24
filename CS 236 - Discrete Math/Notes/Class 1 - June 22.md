@@ -1,4 +1,9 @@
-### Class 1 - June 22, 2015
+# Class 1 - June 22, 2015
+#### Topics
+* Scanners
+* Tokenization
+* Regular Expressions
+* State Machines
 
 # Scanners
 * Scanning is like low-level parsing
