@@ -3,7 +3,8 @@
 * State Machines
 * Project 1 Advice
 * Grammars
-* Parse Trees
+    - Derivations
+    - Parse Trees
 
 
 # State Machines
