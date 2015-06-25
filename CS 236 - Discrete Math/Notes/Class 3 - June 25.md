@@ -92,30 +92,60 @@ B -> true | false      |        D -> not D
 
 
 
+# Parse Tables
+
+Using:
+```
+E -> T A
+A -> + T A | - T A | epsilon
+T -> ( E ) | 2
+```
+
+Parse `2+2`
+
+**Stack-based parser**
+```
+STACK       INPUT       OUTPUT
+E#          2+2#
+TA#         2+2#
+2A#         2+2#
+A#          +2#         2
++TA#        +2#         2
+TA#         2#          2 +
+2A#         2#          2 +
+A#          #           2 + 2
+EPSILON#    #           2 + 2
+#           #           2 + 2   VALID SYNTAX
+```
 
 
+#### Class Example
+```
+S -> if E then S
+S -> E = E
+E -> number | ident
+```
+
+Parse `if x then y = 2`
+
+```
+STACK           INPUT               OUTPUT
+S#              if x then y = 2#
+if E then S#    if x then y = 2#     
+E then S#       x then y = 2#       if
+ident then S#   x then y = 2#       if
+then S#         then y = 2#         if ident
+S#              y = 2#              if ident then
+E = E#          y = 2#              if ident then
+ident = E#      y = 2#              if ident then
+= E#            = 2#                if ident then ident
+E#              2#                  if ident then ident =
+number#         2#                  if ident then ident =
+#               #                   if ident then ident = number
+                                    VALID SYNTAX
+```
 
 
+### A Parse Table
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![Parse Table](images/parse_table.jpg)
