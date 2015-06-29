@@ -1,0 +1,109 @@
+/*
+ * Node.cpp
+ *
+ *  Created on: Jun 18, 2015
+ *      Author: mocklera
+ */
+
+#include "Node.h"
+
+Node::Node(int data) {
+	height = 0;
+	left_child = NULL;
+	right_child = NULL;
+	this->data = data;
+}
+
+int Node::getData() {
+	return data;
+}
+
+Node* Node::getLeftChild() {
+	return left_child;
+}
+
+Node* Node::getRightChild() {
+	return right_child;
+}
+
+int Node::getHeight() {
+	return height;
+}
+
+int Node::get_balance() {
+	return right_child->getHeight() - left_child->getHeight();
+}
+
+void Node::set_height() {
+	int height_left = 0;
+	int height_right = 0;
+
+	if ( left_child != NULL )
+		height_left = left_child->getHeight();
+
+	if ( right_child != NULL )
+		height_right = right_child->getHeight();
+
+	if (height_left > height_right)
+		height = height_left + 1;
+	else
+		height = height_right + 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

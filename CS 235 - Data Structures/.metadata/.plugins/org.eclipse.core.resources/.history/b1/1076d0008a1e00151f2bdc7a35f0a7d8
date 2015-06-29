@@ -1,0 +1,35 @@
+/*
+ * Token.h
+ *
+ *  Created on: Jun 29, 2015
+ *      Author: mocklera
+ */
+
+#ifndef TOKEN_H_
+#define TOKEN_H_
+
+#include <string>
+
+class Token {
+public:
+	Token();
+	virtual ~Token();
+private:
+	enum Type{ID, STRING, PUNCTIATION, ...};
+	string value;
+};
+
+#endif /* TOKEN_H_ */
+
+
+
+
+class Token {
+private:
+    enum TType{ID, STRING, PUNCTUATION, ...};
+        // map<TType, string> m = { { ID, "ID" }. { STRING, "STRING" } }
+        // So then you can do out << m[type] and it will spit out the string instead of the number in the enum
+    string value;
+    int line;
+
+};

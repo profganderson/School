@@ -1,0 +1,19 @@
+/*
+ * AVL.h
+ *
+ *  Created on: Jun 18, 2015
+ *      Author: mocklera
+ */
+
+#ifndef STUDENT_CODE_AVL_H_
+#define STUDENT_CODE_AVL_H_
+
+#include "AVLInterface.h"
+
+class AVL: public AVLInterface {
+public:
+	AVL();
+	virtual ~AVL();
+};
+
+#endif /* STUDENT_CODE_AVL_H_ */

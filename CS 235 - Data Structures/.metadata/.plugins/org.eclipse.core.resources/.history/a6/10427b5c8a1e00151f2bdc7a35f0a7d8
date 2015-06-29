@@ -1,0 +1,44 @@
+/*
+ * Scanner.h
+ *
+ *  Created on: Jun 29, 2015
+ *      Author: mocklera
+ */
+
+#ifndef SCANNER_H_
+#define SCANNER_H_
+
+#include "Token.h"
+#include <vector>
+
+class Scanner {
+public:
+	Scanner();
+	virtual ~Scanner();
+};
+
+#endif /* SCANNER_H_ */
+
+
+
+//class Scanner {
+//public:
+//    Scanner();
+//    virtual ~Scanner();
+//    vector<Token> getTokens(); // Returns all the tokens (like, to the parser)
+//    scanToken() { // Reads the input and looks for the next token
+//        // skip whitespace, comments (as a function maybe)
+//        // Decide what kind of token it is (look at the character! You _almost_ always know from one character in this case)
+//            // May as well use a switch for this
+//            QUOTE:
+//                scan_quote();
+//            default:
+//                scan_identifier();
+//                // On this one, read in until you reach something that isn't a letter or number.
+//                // Use stdlib functions to check for whitespace, letter, number, etc.
+//
+//    }
+//private:
+//    vector<Token> tokens;
+//
+//};

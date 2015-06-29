@@ -1,0 +1,18 @@
+/*
+ * Scanner.cpp
+ *
+ *  Created on: Jun 29, 2015
+ *      Author: mocklera
+ */
+
+#include "Scanner.h"
+
+Scanner::Scanner() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Scanner::~Scanner() {
+	// TODO Auto-generated destructor stub
+}
+
