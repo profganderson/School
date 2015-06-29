@@ -50,6 +50,13 @@ private:
  *			If you find a comment (begins with a #)
  *				just do a while loop and keep taking it in until you hit \n again. (\n is one character)
  *
+ *	Getting file names out of command line
+ *		int main ( int argc, char* argv[] ) {
+ *			argv[1] // is a cstr with the first filename
+ *			argv[2] // a cstr with the output filename
+ *				// argv[0] is the name of the program you are running. neat.
+ *		}
+ *
  *	Other notes:
  *		Remember to keep checking for EOF as well as \n (Add some cases to the switch)
  *		You will have a main that will bring in the file and just hand it off to the scanner.
