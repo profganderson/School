@@ -23,5 +23,5 @@ E                                        number      ident
 
 | _ | if          | then | = | number | ident |
 | - | ----------- | ---- | - | ------ | ----- |
-| S | if E then S |      |   | E = E  | E = E |
-| E |             |      |   | number | ident |
+| S | if E then S | ____ | _ | E = E  | E = E |
+| E | ___________ | ____ | _ | number | ident |
