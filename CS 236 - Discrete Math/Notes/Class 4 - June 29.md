@@ -21,7 +21,7 @@ S   if E then S                           E=E         E=E
 E                                        number      ident
 ```
 
-|   | if          | then | = | number | ident |
-| - | --          | ---- | - | ------ | ----- |
+| _ | if          | then | = | number | ident |
+| - | ----------- | ---- | - | ------ | ----- |
 | S | if E then S |      |   | E = E  | E = E |
 | E |             |      |   | number | ident |
