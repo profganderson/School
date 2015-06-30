@@ -16,6 +16,7 @@
 //When you hit the EOF, c will be -1 (hence using int c instead of char a)
 
 Scanner::Scanner(char* input_file) {
+	error = -1;
 	line = 0;
 	file.open(input_file);
 }
@@ -24,48 +25,48 @@ Scanner::~Scanner() {
 	clearTokens();
 }
 
-std::vector<Token> Scanner::getTokens() {
+std::vector<Token*> Scanner::getTokens() {
 	return tokens;
 }
 
-void Scanner::scanToken() {
+void Scanner::scan() {
 	char token = file.get();
-	switch (token) {
-	case ',':
-		Token c = new Token(token, line, Token::COMMA);
-		tokens.push_back(c);
-		break;
-	case '.':
-		Token p = new Token(token, line, Token::PERIOD);
-		tokens.push_back(p);
-		break;
-	case '?':
-		Token q = new Token(token, line, Token::Q_MARK);
-		tokens.push_back(q);
-		break;
-	case '(':
-		Token lp = new Token(token, line, Token::LEFT_PAREN);
-		tokens.push_back(lp);
-		break;
-	case ')':
-		Token rp = new Token(token, line, Token::RIGHT_PAREN);
-		tokens.push_back(rp);
-		break;
-	case ':':
-		scan_colon();
-		break;
-	case '#':
-		scan_comment();
-		break;
-	case '\'':
-		scan_string();
-		break;
-	case '\n':
-		line++;
-		break;
-	default:
-		break;
+	while (token != EOF) {
+		switch (token) {
+		case ',':
+			scan_punctation(token, line, Token::COMMA);
+			break;
+		case '.':
+			scan_punctation(token, line, Token::PERIOD);
+			break;
+		case '?':
+			scan_punctation(token, line, Token::Q_MARK);
+			break;
+		case '(':
+			scan_punctation(token, line, Token::LEFT_PAREN);
+			break;
+		case ')':
+			scan_punctation(token, line, Token::RIGHT_PAREN);
+			break;
+		case ':':
+			scan_colon();
+			break;
+		case '#':
+			scan_comment();
+			break;
+		case '\'':
+			scan_string();
+			break;
+		case '\n':
+			line++;
+			break;
+		default:
+			scan_id();
+			break;
+		}
 	}
+	Token* end = new Token(char token, int line, Token::END);
+	tokens.push_back(end);
 	// Reads the input and looks for the next token
 	//        // skip whitespace, comments (as a function maybe)
 	//        // Decide what kind of token it is (look at the character! You _almost_ always know from one character in this case)
@@ -79,13 +80,31 @@ void Scanner::scanToken() {
 
 }
 
+void Scanner::scan_punctation(char token, int line, Token::TType type) {
+	Token* t = new Token(token, line, type);
+	tokens.push_back(t);
+}
+
 void Scanner::scan_colon() {
-	// Check if it is : or :-
-	// Then create the proper token and push it into the vector
+	if ( file.peek() == '-' ) {
+		// Throw out the -
+		file.get();
+		// Create a :- token
+		Token* t = new Token(":-", line, Token::COLON_DASH);
+		tokens.push_back(cd);
+	}
+	else {
+		// Create a : token
+		Token* t = new Token(':', line, Token::COLON);
+	}
+	tokens.push_back(t);
 }
 
 void Scanner::scan_comment() {
-
+	// As long as the next character isn't a new line, throw it out.
+	while (file.peek() != '\n') {
+		file.get();
+	}
 }
 
 void Scanner::scan_string() {
@@ -95,12 +114,61 @@ void Scanner::scan_string() {
 		input_str << token;
 		token = file.get();
 	}
-	Token string_token = new Token(input_str.str(), line, Token::STRING);
+	Token* string_token = new Token(input_str.str(), line, Token::STRING);
 	tokens.push_back(string_token);
 }
 
 void Scanner::scan_id() {
+	stringstream id;
 
+	// If the first char of the ID is a digit, error out.
+	if ( std::isdigit(token) ) {
+		error = line;
+	}
+	// If the character is whitespace, ignore it
+	else if ( std::isspace(token) ) {
+		;
+	}
+	else {
+		id << token;
+		while ( file.peek() != ','
+				&& file.peek() != '.' && file.peek() != '?'
+				&& file.peek() != '(' && file.peek() != ')'
+				&& file.peek() != '\n' && file.peek() != 'EOF' ) {
+			id << file.get();
+		}
+		std::str id_str = id.str();
+		if (!is_keyword(id_str)) {
+			Token* t = new Token(id_str, line, Token::STRING);
+			tokens.push_back(t);
+		}
+	}
+}
+
+bool Scanner::is_keyword(std::string id) {
+	bool is_keyword;
+	Token* t;
+
+	if ( id == "SCHEMES" ) {
+		t = new Token(id, line, Token::SCHEMES);
+		is_keyword = true;
+	}
+	else if ( id == "FACTS" ) {
+		t = new Token(id, line, Token::FACTS);
+		is_keyword = true;
+	}
+	else if ( id == "RULES" ) {
+		t = new Token(id, line, Token::RULES);
+		is_keyword = true;
+	}
+	else if ( id == "QUERIES" ) {
+		t = new Token(id, line, Token::QUERIES);
+		is_keyword = true;
+	}
+	else 
+		is_keyword = false;
+
+	return is_keyword;
 }
 
 void Scanner::clearTokens() {

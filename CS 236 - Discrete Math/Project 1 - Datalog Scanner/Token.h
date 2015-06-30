@@ -15,14 +15,12 @@ class Token {
 public:
 	enum TType{COMMA, PERIOD, Q_MARK, LEFT_PAREN, RIGHT_PAREN, COLON, COLON_DASH, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, END} token_type;
 
-	Token(std::string value, int line, Token::TType type) : value(value), line(line), token_type(type) {};
+	Token(std::string value, int line, Token::TType type);
 	virtual ~Token();
-private:
-	 	 // map<TType, string> m = { { ID, "ID" }. { STRING, "STRING" } }
-	     // So then you can do out << m[type] and it will spit out the string instead of the number in the enum
+	
 	std::string value;
 	int line;
-	std::map<TType, std::string> type_to_string;
+	std::map<TType, std::string> type_to_string; // type_to_string[token_type]
 };
 
 #endif /* TOKEN_H_ */
