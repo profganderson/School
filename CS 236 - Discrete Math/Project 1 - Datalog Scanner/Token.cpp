@@ -25,6 +25,11 @@ Token::Token(std::string value, int line, Token::TType type) {
 		{ QUERIES, "QUERIES" },
 		{ ID, "ID" },
 		{ STRING, "STRING" },
-		{ END, "EOF" }
+		{ END, "EOF" },
+		{ ERROR, "Error" }
 	};
+}
+
+Token::~Token() {
+	type_to_string.clear();
 }

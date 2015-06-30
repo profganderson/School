@@ -5,24 +5,24 @@
  *      Author: mocklera
  */
 
+#include <cctype>
+#include <iostream>
+#include <sstream>
 #include "Token.h"
 #include "Scanner.h"
-#include <sstream>
 
-//Identifier token recognition comes last
-//Skip over comments
-//Use an ifstream to read in the file (has to be ifsteam since input files are write protected)
-//Then you can do ifstream in; int c = in.get();
-//When you hit the EOF, c will be -1 (hence using int c instead of char a)
+// Problems
+	// If EOF happens at the end of the comment, it gets stuck in an infinite loop
 
 Scanner::Scanner(char* input_file) {
 	error = -1;
-	line = 0;
+	line = 1;
 	file.open(input_file);
 }
 
 Scanner::~Scanner() {
 	clearTokens();
+	file.close();
 }
 
 std::vector<Token*> Scanner::getTokens() {
@@ -31,22 +31,22 @@ std::vector<Token*> Scanner::getTokens() {
 
 void Scanner::scan() {
 	char token = file.get();
-	while (token != EOF) {
+	while (token != EOF && error == -1) {
 		switch (token) {
 		case ',':
-			scan_punctation(token, line, Token::COMMA);
+			scan_punctuation(token, Token::COMMA);
 			break;
 		case '.':
-			scan_punctation(token, line, Token::PERIOD);
+			scan_punctuation(token, Token::PERIOD);
 			break;
 		case '?':
-			scan_punctation(token, line, Token::Q_MARK);
+			scan_punctuation(token, Token::Q_MARK);
 			break;
 		case '(':
-			scan_punctation(token, line, Token::LEFT_PAREN);
+			scan_punctuation(token, Token::LEFT_PAREN);
 			break;
 		case ')':
-			scan_punctation(token, line, Token::RIGHT_PAREN);
+			scan_punctuation(token, Token::RIGHT_PAREN);
 			break;
 		case ':':
 			scan_colon();
@@ -61,28 +61,20 @@ void Scanner::scan() {
 			line++;
 			break;
 		default:
-			scan_id();
+			scan_id(token);
 			break;
 		}
+		token = file.get();
 	}
-	Token* end = new Token(char token, int line, Token::END);
-	tokens.push_back(end);
-	// Reads the input and looks for the next token
-	//        // skip whitespace, comments (as a function maybe)
-	//        // Decide what kind of token it is (look at the character! You _almost_ always know from one character in this case)
-	//            // May as well use a switch for this
-	//            QUOTE:
-	//                scan_quote();
-	//            default:
-	//                scan_identifier();
-	//                // On this one, read in until you reach something that isn't a letter or number.
-	//                // Use stdlib functions to check for whitespace, letter, number, etc.
 
+	if (error == -1) {
+		line++;
+		add_token("", Token::END);
+	}
 }
 
-void Scanner::scan_punctation(char token, int line, Token::TType type) {
-	Token* t = new Token(token, line, type);
-	tokens.push_back(t);
+void Scanner::scan_punctuation(char token, Token::TType type) {
+	add_token(token, type);
 }
 
 void Scanner::scan_colon() {
@@ -90,14 +82,12 @@ void Scanner::scan_colon() {
 		// Throw out the -
 		file.get();
 		// Create a :- token
-		Token* t = new Token(":-", line, Token::COLON_DASH);
-		tokens.push_back(cd);
+		add_token(":-", Token::COLON_DASH);
 	}
 	else {
 		// Create a : token
-		Token* t = new Token(':', line, Token::COLON);
+		add_token(":", Token::COLON);
 	}
-	tokens.push_back(t);
 }
 
 void Scanner::scan_comment() {
@@ -109,68 +99,96 @@ void Scanner::scan_comment() {
 
 void Scanner::scan_string() {
 	std::stringstream input_str;
+	input_str << '\'';
 	char token = file.get();
-	while (token != '\'') {
+	while (token != '\'' && token != '\n') {
 		input_str << token;
 		token = file.get();
+		// If the string isn't complete, make an error.
+		if (token == '\n')
+			error = line;
 	}
-	Token* string_token = new Token(input_str.str(), line, Token::STRING);
-	tokens.push_back(string_token);
-}
-
-void Scanner::scan_id() {
-	stringstream id;
-
-	// If the first char of the ID is a digit, error out.
-	if ( std::isdigit(token) ) {
-		error = line;
-	}
-	// If the character is whitespace, ignore it
-	else if ( std::isspace(token) ) {
-		;
+	if(error == -1) {
+		input_str << '\'';
+		add_token(input_str.str(), Token::STRING);
 	}
 	else {
-		id << token;
-		while ( file.peek() != ','
-				&& file.peek() != '.' && file.peek() != '?'
-				&& file.peek() != '(' && file.peek() != ')'
-				&& file.peek() != '\n' && file.peek() != 'EOF' ) {
-			id << file.get();
+		add_token("", Token::ERROR);
+	}
+}
+
+void Scanner::scan_id(char token) {
+	std::stringstream id;
+
+	// Make sure the char isn't whitespace
+	if (!std::isspace(static_cast<unsigned char>(token))) {
+		// Check if the first char is a digit or other invalid input
+		if (std::isdigit(token) || !std::isalnum(static_cast<unsigned char>(token)) ) {
+			std::cout << "Found an error\n";
+			error = line;
 		}
-		std::str id_str = id.str();
-		if (!is_keyword(id_str)) {
-			Token* t = new Token(id_str, line, Token::STRING);
-			tokens.push_back(t);
+
+		id << token;
+		while (std::isalnum(static_cast<unsigned char>(file.peek()))) {
+			char next = file.get();
+			id << next;
+		}
+
+		if (error != -1) {
+			add_token("", Token::ERROR);
+		}
+		else {
+			std::string id_str = id.str();
+			if(!is_keyword(id_str)) {
+				add_token(id_str, Token::ID);
+			}
 		}
 	}
 }
 
 bool Scanner::is_keyword(std::string id) {
 	bool is_keyword;
-	Token* t;
 
-	if ( id == "SCHEMES" ) {
-		t = new Token(id, line, Token::SCHEMES);
+	if ( id == "Schemes" ) {
+		add_token(id, Token::SCHEMES);
 		is_keyword = true;
 	}
-	else if ( id == "FACTS" ) {
-		t = new Token(id, line, Token::FACTS);
+	else if ( id == "Facts" ) {
+		add_token(id, Token::FACTS);
 		is_keyword = true;
 	}
-	else if ( id == "RULES" ) {
-		t = new Token(id, line, Token::RULES);
+	else if ( id == "Rules" ) {
+		add_token(id, Token::RULES);
 		is_keyword = true;
 	}
-	else if ( id == "QUERIES" ) {
-		t = new Token(id, line, Token::QUERIES);
+	else if ( id == "Queries" ) {
+		add_token(id, Token::QUERIES);
 		is_keyword = true;
 	}
-	else 
+	else {
 		is_keyword = false;
+	}
 
 	return is_keyword;
 }
 
+void Scanner::add_token(char t, Token::TType type) {
+	std::stringstream to_s;
+	to_s << t;
+	Token* tok = new Token(to_s.str(), line, type);
+	tokens.push_back(tok);
+}
+
+void Scanner::add_token(std::string t, Token::TType type) {
+	Token* tok = new Token(t, line, type);
+	tokens.push_back(tok);
+}
+
 void Scanner::clearTokens() {
+	int num = tokens.size();
+	for (int i = 0; i < num; i++) {
+		Token* t = tokens.at(i);
+		delete t;
+	}
 	tokens.clear();
 }

@@ -17,14 +17,16 @@ public:
 	Scanner(char* input_file);
 	virtual ~Scanner();
 	std::vector<Token*> getTokens();
-private:
 	void scan();
-	void scan_punctuation(char token, int line, Token::TType type);
+private:
+	void scan_punctuation(char token, Token::TType type);
 	void scan_colon();
 	void scan_comment();
 	void scan_string();
-	void scan_id();
-	bool is_keyword(std::str id);
+	void scan_id(char token);
+	bool is_keyword(std::string id);
+	void add_token(char t, Token::TType type);
+	void add_token(std::string t, Token::TType type);
 	void clearTokens();
 
 	std::vector<Token*> tokens;

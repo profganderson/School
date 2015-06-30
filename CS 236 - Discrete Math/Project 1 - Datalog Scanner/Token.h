@@ -13,7 +13,7 @@
 
 class Token {
 public:
-	enum TType{COMMA, PERIOD, Q_MARK, LEFT_PAREN, RIGHT_PAREN, COLON, COLON_DASH, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, END} token_type;
+	enum TType{COMMA, PERIOD, Q_MARK, LEFT_PAREN, RIGHT_PAREN, COLON, COLON_DASH, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, END, ERROR} token_type;
 
 	Token(std::string value, int line, Token::TType type);
 	virtual ~Token();

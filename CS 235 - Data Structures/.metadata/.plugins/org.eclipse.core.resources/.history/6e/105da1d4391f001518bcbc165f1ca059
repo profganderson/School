@@ -1,0 +1,8 @@
+Facts:
+$
+Rules:
+# A colon immediately followed by another token (no space between the colon and the next token).
+# An identifier that contains a number.
+# An identifier that contains a keyword.
+# An empty string (nothing between the quotes '').
+# An unterminated string.
