@@ -10,15 +10,24 @@
 
 #include "Token.h"
 #include <vector>
+#include <fstream>
 
 class Scanner {
 public:
-	Scanner();
+	Scanner(char* input_file);
 	virtual ~Scanner();
 	std::vector<Token> getTokens();
-	void scanToken();
 private:
+	void scanToken();
+	void scan_colon();
+	void scan_comment();
+	void scan_string();
+	void scan_id();
+	void clearTokens();
+
 	std::vector<Token> tokens;
+	int line;
+	std::ifstream file;
 };
 
 #endif /* SCANNER_H_ */

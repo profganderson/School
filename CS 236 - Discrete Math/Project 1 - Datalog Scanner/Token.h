@@ -9,17 +9,20 @@
 #define TOKEN_H_
 
 #include <string>
+#include <map>
 
 class Token {
 public:
-	Token();
+	enum TType{COMMA, PERIOD, Q_MARK, LEFT_PAREN, RIGHT_PAREN, COLON, COLON_DASH, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, END} token_type;
+
+	Token(std::string value, int line, Token::TType type) : value(value), line(line), token_type(type) {};
 	virtual ~Token();
 private:
-	enum TType{COMMA, PERIOD, Q_MARK, LEFT_PAREN, RIGHT_PAREN, COLON, COLON_DASH, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, END};
 	 	 // map<TType, string> m = { { ID, "ID" }. { STRING, "STRING" } }
 	     // So then you can do out << m[type] and it will spit out the string instead of the number in the enum
 	std::string value;
 	int line;
+	std::map<TType, std::string> type_to_string;
 };
 
 #endif /* TOKEN_H_ */

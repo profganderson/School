@@ -8,7 +8,7 @@
 #include "Token.h"
 
 Token::Token() {
-	// TODO Auto-generated constructor stub
+
 }
 
 Token::~Token() {
