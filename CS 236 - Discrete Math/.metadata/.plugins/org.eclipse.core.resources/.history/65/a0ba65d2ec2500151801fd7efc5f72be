@@ -1,0 +1,162 @@
+/*
+ * Parser.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#include "Parser.h"
+#include <iostream>
+
+Parser::Parser(std::vector<Token*> & tokens) {
+	this->tokens = tokens;
+	current_token_index = 0;
+	current_token = this->tokens.at(current_token_index);
+
+	current_predicate = NULL;
+	program = new DatalogProgram();
+
+	try {
+		match(Token::SCHEMES);
+		match(Token::COLON);
+		scheme();
+		schemeList();
+		match(Token::FACTS);
+		match(Token::COLON);
+		factList();
+		match(Token::RULES);
+		match(Token::COLON);
+		ruleList();
+//		match(Token::QUERIES);
+//		match(Token::COLON);
+//		query();
+//		queryList();
+		std::cout << "\tSuccess!" << std::endl;
+	}
+	catch (Token* current_token) {
+		std::cout << "\tFailure!" << std::endl;
+		std::cout << "\t\t(" << current_token->type_to_string[current_token->token_type] << ",\""
+				<< current_token->value << "\","
+				<< current_token->line << ")" << std::endl;
+	}
+}
+
+void Parser::parameter () {
+    if(current_token->token_type == Token::STRING) {
+    	// Push the parameters into the current predicate as strings
+    	current_predicate->params.push_back(new Parameter(current_token->value, true));
+        match(Token::STRING);
+    }
+    else if (current_token->token_type == Token::ID) {
+    	// Push the parameters into the current predicate as IDs
+    	current_predicate->params.push_back(new Parameter(current_token->value, false));
+        match(Token::ID);
+    }
+    else {
+        error();
+    }
+}
+
+void Parser::parameterList() {
+	// Keep calling the parameter function as long as there are parameters remaining in the list
+    if (current_token->token_type == Token::COMMA) {
+        match(Token::COMMA);
+        parameter();
+        parameterList();
+    }
+}
+
+void Parser::predicate() {
+    if (current_token->token_type == Token::ID) {
+		current_predicate = new Predicate(current_token->value);
+        match(Token::ID);
+        match(Token::LEFT_PAREN);
+        parameter();
+        parameterList();
+        match(Token::RIGHT_PAREN);
+    }
+    else {
+        error();
+    }
+}
+
+void Parser::predicateList() {
+    if (current_token->token_type == Token::COMMA) {
+        match(Token::COMMA);
+        predicate();
+        predicateList();
+    }
+}
+
+void Parser::query() {
+    predicate();
+    match(Token::Q_MARK);
+}
+
+void Parser::rule() {
+    predicate();
+    Rule * r = new Rule(current_predicate);
+    match(Token::COLON_DASH);
+    predicate();
+    predicateList();
+    match(Token::PERIOD);
+}
+
+void Parser::fact() {
+    predicate();
+    match(Token::PERIOD);
+    program->facts.push_back(current_predicate);
+}
+
+void Parser::scheme() {
+    predicate();
+    program->schemes.push_back(current_predicate);
+}
+
+void Parser::queryList() {
+    if (current_token->token_type == Token::COMMA) {
+        query();
+        queryList();
+    }
+}
+
+void Parser::ruleList() {
+    if (current_token->token_type == Token::COMMA ||
+        current_token->token_type == Token::ID) {
+        rule();
+        ruleList();
+    }
+}
+
+void Parser::factList() {
+    if (current_token->token_type == Token::COMMA ||
+        current_token->token_type == Token::ID) {
+        fact();
+        factList();
+    }
+}
+
+void Parser::schemeList() {
+    if (current_token->token_type != Token::FACTS) {
+        scheme();
+        schemeList();
+    }
+}
+
+void Parser::error () {
+    throw current_token;
+};
+
+void Parser::match(Token::TType type) {
+    if (type == current_token->token_type) {
+        current_token_index++;
+        current_token = tokens.at(current_token_index);
+    }
+    else {
+        error();
+    }
+}
+
+DatalogProgram* Parser::get_program() {
+	return program;
+}

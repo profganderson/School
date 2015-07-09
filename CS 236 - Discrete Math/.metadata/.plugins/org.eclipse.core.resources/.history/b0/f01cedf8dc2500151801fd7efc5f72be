@@ -1,0 +1,94 @@
+/*
+ * main.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#include <iostream>
+#include <string>
+#include "Parser.h"
+
+std::vector<Token*> scan(char* input_file);
+void output_scanner_results(std::vector<Token*> tokens, char * filename);
+void parse(std::vector<Token*> tokens);
+void output_parser_results();
+
+int main(int argc, char* argv[])
+{
+	char* input_file = argv[1];
+	char* output_file = argv[2];
+
+	// Run the scanner
+	std::vector<Token*> tokens = scan(input_file);
+	output_scanner_results(tokens, output_file);
+
+	// Run the parser
+	// parse(tokens);
+
+	return 0;
+}
+
+std::vector<Token*> scan(char* input_file) {
+	std::cout << "*****Running Scanner..." << std::endl;
+	Scanner* scanner = new Scanner(input_file);
+	scanner->scan();
+	std::vector<Token*> tokens = scanner->getTokens();
+	std::cout << "*****Finished Scanning." << std::endl;
+	delete scanner;
+	scanner = NULL;
+	return tokens;
+}
+
+void output_scanner_results(std::vector<Token*> tokens, char * filename) {
+	std::cout << "Starting to output" << std::endl;
+	std::ofstream output(filename);
+	std::cout << "  made ofstream" << std::endl;
+	int num_tokens = tokens.size();
+	std::cout << "  got tokens size" << std::endl;
+	bool has_error = false;
+
+	for(int i = 0; i < num_tokens; i++)
+	{
+		Token* t = tokens.at(i);
+		std::string val = t->value;
+		int line = t->line;
+		std::string ttype = t->type_to_string[t->token_type];
+		if (ttype != "Error") {
+			output << "(" << ttype << ",\"" << val << "\"," << line << ")\n";
+		}
+		else {
+			output << "Input Error on line " << line;
+			has_error = true;
+		}
+	}
+
+	if (!has_error)
+		output << "Total tokens = " << num_tokens;
+
+	std::cout << "Finished scanner output" << std::endl;
+}
+
+void parse(std::vector<Token*> tokens) {
+	std::cout << "Parsing...ish" << std::endl;
+}
+
+void output_parser_results() {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

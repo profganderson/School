@@ -1,0 +1,21 @@
+/*
+ * Rule.h
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#ifndef RULE_H_
+#define RULE_H_
+
+#include "Predicate.h"
+
+class Rule {
+public:
+	Rule();
+	virtual ~Rule();
+	Predicate head;
+	vector<Predicate*> body;
+};
+
+#endif /* RULE_H_ */

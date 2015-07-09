@@ -1,0 +1,51 @@
+/*
+ * DatalogProgram.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#include <sstream>
+#include "DatalogProgram.h"
+
+DatalogProgram::DatalogProgram() {
+	// TODO Auto-generated constructor stub
+
+}
+
+DatalogProgram::~DatalogProgram() {
+	// TODO Auto-generated destructor stub
+}
+
+std::string DatalogProgram::to_string() {
+	std::stringstream prog;
+
+	// Schemes
+	int num_schemes = schemes.size();
+	prog << "Schemes(" << num_schemes << "):\n";
+	for (int i = 0; i < num_schemes; i++)
+	{
+		prog << "\t" << schemes.at(i)->to_string() << std::endl;
+	}
+
+	// Facts
+	int num_facts = facts.size();
+	prog << "Facts(" << num_facts << "):\n";
+	for (int i = 0; i < num_facts; i++)
+	{
+		prog << "\t" << facts.at(i)->to_string() << "." << std::endl;
+	}
+
+	// Rules
+	int num_rules = rules.size();
+	prog << "Rules(" << num_rules << "):\n";
+	for (int i = 0; i < num_rules; i++)
+	{
+		Rule * rule = rules.at(i);
+		prog << "\t" << rule->head->to_string() << " :- ";
+		print_all_predicates(rule->body);
+		Rule = NULL;
+	}
+
+	return prog.str();
+}

@@ -1,0 +1,17 @@
+/*
+ * Predicate.h
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#ifndef PREDICATE_H_
+#define PREDICATE_H_
+
+class Predicate {
+public:
+	Predicate();
+	virtual ~Predicate();
+};
+
+#endif /* PREDICATE_H_ */

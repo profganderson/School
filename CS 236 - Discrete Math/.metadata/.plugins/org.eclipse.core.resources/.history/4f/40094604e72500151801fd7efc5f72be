@@ -1,0 +1,13 @@
+/*
+ * Predicate.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#include <sstream>
+#include "Predicate.h"
+
+std::string Predicate::to_string() {
+
+}

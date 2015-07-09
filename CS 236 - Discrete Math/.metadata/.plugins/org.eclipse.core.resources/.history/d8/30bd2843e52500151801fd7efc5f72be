@@ -1,0 +1,20 @@
+/*
+ * Parameter.h
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#ifndef PARAMETER_H_
+#define PARAMETER_H_
+
+class Parameter {
+public:
+	Parameter();
+	virtual ~Parameter();
+private:
+	bool is_string;
+	std::string value;
+};
+
+#endif /* PARAMETER_H_ */

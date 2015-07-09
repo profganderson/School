@@ -1,0 +1,55 @@
+/*
+ * main.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#include <iostream>
+#include <string>
+#include "Parser.h"
+
+int main(int argc, char* argv[])
+{
+	// Get filenames from command line
+	char* input_file = argv[1];
+	char* output_file = argv[2];
+
+	// Run the scanner and clean up
+	std::cout << "Running Scanner..." << std::endl;
+	Scanner* scanner = new Scanner(input_file);
+	scanner->scan();
+	std::vector<Token*> tokens = scanner->getTokens();
+	delete scanner;
+	scanner = NULL;
+	std::cout << "\tFinished Scanning!" << std::endl;
+
+	// Run the parser
+	std::cout << "Running Parser..." << std::endl;
+	std::cout << "\t\t" << &tokens << std::endl;
+	Parser* parser = new Parser(tokens);
+	delete parser;
+	parser = NULL;
+	std::cout << "\tFinished Parsing!" << std::endl;
+
+	// Output results
+	std::ofstream output(output_file);
+	output.close();
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

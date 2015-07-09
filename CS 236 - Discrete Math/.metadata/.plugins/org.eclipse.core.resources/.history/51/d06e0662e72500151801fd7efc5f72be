@@ -1,0 +1,22 @@
+/*
+ * Predicate.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#include <sstream>
+#include "Predicate.h"
+
+std::string Predicate::to_string() {
+	std::stringstream s;
+
+	s << name << "(";
+
+	s << ")";
+//	Schemes(2):
+//	  snap(S,N,A,P)
+//	  HasSameAddress(X,Y)
+
+	return s.str();
+}

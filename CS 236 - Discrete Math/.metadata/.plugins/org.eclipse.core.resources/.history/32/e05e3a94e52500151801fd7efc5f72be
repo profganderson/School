@@ -1,0 +1,18 @@
+/*
+ * Predicate.cpp
+ *
+ *  Created on: Jul 8, 2015
+ *      Author: mocklera
+ */
+
+#include "Predicate.h"
+
+Predicate::Predicate() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Predicate::~Predicate() {
+	// TODO Auto-generated destructor stub
+}
+
