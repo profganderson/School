@@ -17,7 +17,7 @@
 
 class DatalogProgram {
 public:
-	DatalogProgram(){has_error = false;};
+	DatalogProgram(){};
 	virtual ~DatalogProgram();
 
 	std::string to_string();
@@ -28,12 +28,6 @@ public:
 	std::vector<Rule> rules;
 	std::vector<Predicate> queries;
 	std::set<std::string> domain;
-
-	void error(std::string message);
-
-private:
-	bool has_error;
-	std::string error_message;
 };
 
 #endif /* DATALOGPROGRAM_H_ */

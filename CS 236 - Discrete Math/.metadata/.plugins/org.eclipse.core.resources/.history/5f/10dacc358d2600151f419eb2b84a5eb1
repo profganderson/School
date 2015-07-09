@@ -29,11 +29,8 @@ public:
 	std::vector<Predicate> queries;
 	std::set<std::string> domain;
 
-	void error(std::string message);
-
 private:
 	bool has_error;
-	std::string error_message;
 };
 
 #endif /* DATALOGPROGRAM_H_ */

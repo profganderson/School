@@ -25,8 +25,6 @@ std::string DatalogProgram::to_string() {
 		return prog.str();
 	}
 
-	prog << "Success!" << std::endl;
-
 	// Schemes
 	prog << predicate_vector_to_string(schemes, "Schemes");
 

@@ -41,6 +41,11 @@ Parser::Parser(std::vector<Token*> & tokens) {
 		query();
 		queryList();
 
+		int total_tokens_from_scanner = this->tokens.size() - 1;
+		if (current_token_index < total_tokens_from_scanner) {
+			error();
+		}
+
 		std::cout << "\tSuccess!" << std::endl;
 	}
 	catch (Token* current_token) {
@@ -140,7 +145,7 @@ void Parser::scheme() {
 }
 
 void Parser::queryList() {
-    if (current_token->token_type != Token::END) {
+    if (current_token->token_type == Token::COMMA) {
         query();
         queryList();
     }

@@ -20,13 +20,6 @@ DatalogProgram::~DatalogProgram() {
 std::string DatalogProgram::to_string() {
 	std::stringstream prog;
 
-	if (has_error) {
-		prog << error_message;
-		return prog.str();
-	}
-
-	prog << "Success!" << std::endl;
-
 	// Schemes
 	prog << predicate_vector_to_string(schemes, "Schemes");
 
@@ -76,9 +69,4 @@ std::string DatalogProgram::predicate_vector_to_string(std::vector<Predicate> ve
 	}
 
 	return o.str();
-}
-
-void DatalogProgram::error(std::string message) {
-	has_error = true;
-	error_message = message;
 }

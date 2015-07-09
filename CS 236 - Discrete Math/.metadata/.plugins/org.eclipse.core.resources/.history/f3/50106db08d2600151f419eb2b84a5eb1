@@ -49,7 +49,6 @@ Parser::Parser(std::vector<Token*> & tokens) {
 		err << "\t(" << current_token->type_to_string[current_token->token_type] << ",\""
 				<< current_token->value << "\","
 				<< current_token->line << ")" << std::endl;
-		program.error(err.str());
 	}
 }
 
@@ -140,7 +139,7 @@ void Parser::scheme() {
 }
 
 void Parser::queryList() {
-    if (current_token->token_type != Token::END) {
+    if (current_token->token_type == Token::COMMA) {
         query();
         queryList();
     }

@@ -33,7 +33,6 @@ public:
 
 private:
 	bool has_error;
-	std::string error_message;
 };
 
 #endif /* DATALOGPROGRAM_H_ */

@@ -140,7 +140,7 @@ void Parser::scheme() {
 }
 
 void Parser::queryList() {
-    if (current_token->token_type != Token::END) {
+    if (current_token->token_type == Token::COMMA) {
         query();
         queryList();
     }
