@@ -5,3 +5,4 @@ Labs and projects from Computer Science and Information Systems classes
 - CS142 - Intro to Programming (C++)
 - IS303 - Intro to Programming (Java)
 - CS235 - Data Structures
+- CS236 - Discrete Structures
