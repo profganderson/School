@@ -4,6 +4,9 @@
 *.o
 *.obj
 
+# Zipped Files
+*.zip
+
 # Precompiled Headers
 *.gch
 *.pch
