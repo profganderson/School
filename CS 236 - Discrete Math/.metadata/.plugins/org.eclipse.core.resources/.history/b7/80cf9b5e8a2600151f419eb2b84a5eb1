@@ -14,11 +14,10 @@
 
 class Predicate {
 public:
-	Predicate(){};
 	Predicate(std::string name) : name(name) {};
 	virtual ~Predicate();
 	std::string name;
-	std::vector<Parameter> params;
+	std::vector<Parameter*> params;
 	std::string to_string();
 };
 

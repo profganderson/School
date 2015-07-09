@@ -32,16 +32,17 @@ std::string DatalogProgram::to_string() {
 	for (int i = 0; i < num_rules; i++)
 	{
 		Rule rule = rules.at(i);
-		prog << "\t" << rule.head.to_string() << " :- ";
+		prog << "\t" << rule.head->to_string() << " :- ";
 
-		int body_size = rule.body.size();
+		int body_size = rule->body.size();
 		for (int i = 0; i < body_size; i++)
 		{
-			prog << rule.body.at(i).to_string();
+			prog << rule->body.at(i)->to_string();
 			if (i != (body_size - 1))
 				prog << ",";
 		}
 		prog << std::endl;
+		rule = NULL;
 	}
 
 	// Queries

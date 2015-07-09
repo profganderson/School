@@ -19,7 +19,7 @@ public:
 	Parser(std::vector<Token*> & tokens);
 	virtual ~Parser();
 
-	DatalogProgram get_program();
+	DatalogProgram* get_program();
 
 private:
 	std::vector<Token*> tokens;
@@ -28,10 +28,10 @@ private:
 
 	Token::TType current_type;
 
-	DatalogProgram program;
+	DatalogProgram * program;
 
-	Predicate current_predicate;
-	Rule current_rule;
+	Predicate * current_predicate;
+	Rule * current_rule;
 
 	void push_current_predicate();
 

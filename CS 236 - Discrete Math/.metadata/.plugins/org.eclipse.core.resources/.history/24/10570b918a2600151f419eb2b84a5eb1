@@ -13,11 +13,10 @@
 
 class Rule {
 public:
-	Rule(){};
-	Rule(Predicate head) : head(head) {};
+	Rule(Predicate* head) : head(head) {};
 	virtual ~Rule();
-	Predicate head;
-	std::vector<Predicate> body;
+	Predicate* head;
+	std::vector<Predicate*> body;
 };
 
 #endif /* RULE_H_ */

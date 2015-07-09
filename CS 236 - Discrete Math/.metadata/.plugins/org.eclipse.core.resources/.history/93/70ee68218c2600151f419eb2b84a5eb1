@@ -14,7 +14,6 @@
 
 class Predicate {
 public:
-	Predicate(){};
 	Predicate(std::string name) : name(name) {};
 	virtual ~Predicate();
 	std::string name;

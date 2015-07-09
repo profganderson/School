@@ -21,12 +21,14 @@ public:
 	virtual ~DatalogProgram();
 
 	std::string to_string();
-	std::string predicate_vector_to_string(std::vector<Predicate> vec, std::string name);
+	std::string predicate_vector_to_string(std::vector<Predicate*> vec, std::string name);
 
-	std::vector<Predicate> schemes;
-	std::vector<Predicate> facts;
-	std::vector<Rule> rules;
-	std::vector<Predicate> queries;
+	void add_scheme();
+
+	std::vector<Predicate*> schemes;
+	std::vector<Predicate*> facts;
+	std::vector<Rule*> rules;
+	std::vector<Predicate*> queries;
 	std::set<std::string> domain;
 };
 

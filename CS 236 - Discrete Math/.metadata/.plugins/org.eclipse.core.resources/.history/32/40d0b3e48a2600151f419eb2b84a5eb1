@@ -42,6 +42,7 @@ std::string DatalogProgram::to_string() {
 				prog << ",";
 		}
 		prog << std::endl;
+		rule = NULL;
 	}
 
 	// Queries

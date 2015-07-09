@@ -10,9 +10,32 @@
 #include "DatalogProgram.h"
 
 DatalogProgram::~DatalogProgram() {
+	int s = schemes.size();
+	for (int i = 0; i < s; i++) {
+		Predicate* p = schemes.at(i);
+		delete p;
+	}
 	schemes.clear();
+
+	int f = facts.size();
+	for (int i = 0; i < f; i++) {
+		Predicate* p = facts.at(i);
+		delete p;
+	}
 	facts.clear();
+
+	int r = rules.size();
+	for (int i = 0; i < r; i++) {
+		Predicate* p = rules.at(i);
+		delete p;
+	}
 	rules.clear();
+
+	int q = queries.size();
+	for (int i = 0; i < q; i++) {
+		Predicate* p = queries.at(i);
+		delete p;
+	}
 	queries.clear();
 	domain.clear();
 }
@@ -31,17 +54,18 @@ std::string DatalogProgram::to_string() {
 	prog << "Rules(" << num_rules << "):\n";
 	for (int i = 0; i < num_rules; i++)
 	{
-		Rule rule = rules.at(i);
-		prog << "\t" << rule.head.to_string() << " :- ";
+		Rule * rule = rules.at(i);
+		prog << "\t" << rule->head->to_string() << " :- ";
 
-		int body_size = rule.body.size();
+		int body_size = rule->body.size();
 		for (int i = 0; i < body_size; i++)
 		{
-			prog << rule.body.at(i).to_string();
+			prog << rule->body.at(i)->to_string();
 			if (i != (body_size - 1))
 				prog << ",";
 		}
 		prog << std::endl;
+		rule = NULL;
 	}
 
 	// Queries
@@ -58,14 +82,14 @@ std::string DatalogProgram::to_string() {
 	return prog.str();
 }
 
-std::string DatalogProgram::predicate_vector_to_string(std::vector<Predicate> vec, std::string name) {
+std::string DatalogProgram::predicate_vector_to_string(std::vector<Predicate*> vec, std::string name) {
 	std::stringstream o;
 
 	int size = vec.size();
 	o << name << "(" << size << "):" << std::endl;
 	for (int i = 0; i < size; i++)
 	{
-		o << "\t" << vec.at(i).to_string() << std::endl;
+		o << "\t" << vec.at(i)->to_string() << std::endl;
 	}
 
 	return o.str();

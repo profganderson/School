@@ -14,8 +14,8 @@ Parser::Parser(std::vector<Token*> & tokens) {
 	current_token = this->tokens.at(current_token_index);
 	program = DatalogProgram();
 
-	current_predicate = Predicate("a");
-	current_rule = Rule(Predicate("a"));
+	current_predicate = Predicate("");
+	current_rule = Rule(Predicate(""));
 
 	try {
 		match(Token::SCHEMES);
@@ -51,7 +51,12 @@ Parser::Parser(std::vector<Token*> & tokens) {
 }
 
 Parser::~Parser() {
+	current_token = NULL;
 	tokens.clear();
+	delete program;
+	program = NULL;
+	current_predicate = NULL;
+	current_rule = NULL;
 }
 
 void Parser::parameter () {
@@ -85,7 +90,7 @@ void Parser::parameterList() {
 
 void Parser::predicate() {
     if (current_token->token_type == Token::ID) {
-		current_predicate = Predicate(current_token->value);
+		current_predicate = new Predicate(current_token->value);
         match(Token::ID);
         match(Token::LEFT_PAREN);
         parameter();

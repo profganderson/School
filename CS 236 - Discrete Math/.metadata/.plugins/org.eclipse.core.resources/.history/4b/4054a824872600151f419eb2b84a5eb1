@@ -12,10 +12,10 @@ Parser::Parser(std::vector<Token*> & tokens) {
 	this->tokens = tokens;
 	current_token_index = 0;
 	current_token = this->tokens.at(current_token_index);
-	program = DatalogProgram();
 
-	current_predicate = Predicate("a");
-	current_rule = Rule(Predicate("a"));
+	current_predicate = NULL;
+	current_rule = NULL;
+	program = new DatalogProgram();
 
 	try {
 		match(Token::SCHEMES);
@@ -51,22 +51,27 @@ Parser::Parser(std::vector<Token*> & tokens) {
 }
 
 Parser::~Parser() {
+	current_token = NULL;
 	tokens.clear();
+	delete program;
+	program = NULL;
+	current_predicate = NULL;
+	current_rule = NULL;
 }
 
 void Parser::parameter () {
     if(current_token->token_type == Token::STRING) {
     	// Push the parameters into the current predicate as strings
-    	current_predicate.params.push_back(Parameter(current_token->value, true));
+    	current_predicate->params.push_back(new Parameter(current_token->value, true));
 
     	// Put the string into the domain
-    	program.domain.insert(current_token->value);
+    	program->domain.insert(current_token->value);
 
         match(Token::STRING);
     }
     else if (current_token->token_type == Token::ID) {
     	// Push the parameters into the current predicate as IDs
-    	current_predicate.params.push_back(Parameter(current_token->value, false));
+    	current_predicate->params.push_back(new Parameter(current_token->value, false));
         match(Token::ID);
     }
     else {
@@ -85,7 +90,7 @@ void Parser::parameterList() {
 
 void Parser::predicate() {
     if (current_token->token_type == Token::ID) {
-		current_predicate = Predicate(current_token->value);
+		current_predicate = new Predicate(current_token->value);
         match(Token::ID);
         match(Token::LEFT_PAREN);
         parameter();
@@ -124,7 +129,7 @@ void Parser::rule() {
     match(Token::PERIOD);
 
     // Push the completed rule on
-    program.rules.push_back(current_rule);
+    program->rules.push_back(current_rule);
 }
 
 void Parser::fact() {
@@ -185,25 +190,26 @@ void Parser::push_current_predicate() {
 
 	switch(container) {
 	case Token::SCHEMES:
-		program.schemes.push_back(current_predicate);
+		program->schemes.push_back(current_predicate);
 		break;
 	case Token::FACTS:
-		program.facts.push_back(current_predicate);
+		program->facts.push_back(current_predicate);
 		break;
 	case Token::COLON_DASH:
-		current_rule = Rule(current_predicate);
+		current_rule = new Rule(current_predicate);
 		break;
 	case Token::RULES:
-		current_rule.body.push_back(current_predicate);
+		current_rule->body.push_back(current_predicate);
 		break;
 	case Token::QUERIES:
-		program.queries.push_back(current_predicate);
+		program->queries.push_back(current_predicate);
 		break;
 	default:
+		std::cout << "DEFAULT" << std::endl;
 		break;
 	}
 }
 
-DatalogProgram Parser::get_program() {
+DatalogProgram* Parser::get_program() {
 	return program;
 }

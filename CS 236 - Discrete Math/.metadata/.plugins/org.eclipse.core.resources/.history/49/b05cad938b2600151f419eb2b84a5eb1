@@ -8,5 +8,7 @@
 #include "Rule.h"
 
 Rule::~Rule() {
+	delete head;
+	head = NULL;
 	body.clear();
 }

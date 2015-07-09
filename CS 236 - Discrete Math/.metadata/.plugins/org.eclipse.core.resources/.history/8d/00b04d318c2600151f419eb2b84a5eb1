@@ -13,7 +13,6 @@
 
 class Rule {
 public:
-	Rule(){};
 	Rule(Predicate head) : head(head) {};
 	virtual ~Rule();
 	Predicate head;
