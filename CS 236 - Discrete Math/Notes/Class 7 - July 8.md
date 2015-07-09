@@ -132,7 +132,25 @@ What is the truth value for each expression?
 
 
 
+# Translating to predicate logic
 
+
+| Original | Translated |
+| -------- | ---------- |
+| Some days are not rainy. | `(exists x)(D(x) and not R(x))` |
+| Every fruit is sweeter than all vegetables | `(all x)(F(x) -> (all y)(V(y) -> S(x,y)))` |
+| Every fruit is sweeter than some vegetable | `(all x)(F(x) -> (exists y)(V(y) and s(x,y)` |
+| All days are sunny | `(all x)(D(x) -> S(x))` |
+| Every day that is sunny is not rainy | `(all x)(D(x) and S(x) -> not R(x))` |
+| Some vegetable is sweeter than all fruits | `(exists y)(V(y) and (all x)(F(x) -> s(y,x)))` |
+
+**Use `->` for universal and `and` for existential**.
+
+
+# Valid Expressions
+* What's a valid expression?
+    - Always true regardless of predicate or domain definitions
+    - Also called a tautology
 
 
 
