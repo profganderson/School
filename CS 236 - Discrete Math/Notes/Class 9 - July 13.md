@@ -80,19 +80,22 @@ X -> epsilon
 A -> B Y
 ```
 
-_Never put Epsilon in the table header_
+_Never put Epsilon in the table header; if a production has epsilon, just put it everywhere there isn't another production. Terminal symbols go across the top, non-terminals across the left._
 
-| Non-Terminals | = | < | > | ++ | ( | ) | 4 | # |
+| | = | < | > | ++ | ( | ) | 4 | # |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| E | | | | | A X | | A X | |
+| E | | | | | AX | | AX | |
 | X | = E | ep | ep | ep | ep | ep | ep | ep |
-| A | | | | | B Y | | B Y | |
-| Y | ep | < B Y | > B Y | ep | ep | ep | ep | ep |
+| A | | | | | BY | | BY | |
+| Y | ep | < BY | > BY | ep | ep | ep | ep | ep |
 | B | | | | | CZ | | CZ | |
 | Z | ep | ep | ep | ++Z | ep | ep | ep |
 | C | | | | | (E) | | 4 | |
 
+#### Question 6
+Using the algebraic laws given in the table, transform the expression into False. Do not use a truth table.Show each step of the transformation. Justify each step with a law from the table. Do not use any laws not provided in the table.
 
+`Q and ( not(not P or Q) or not (Q or not P))`
 
 
 
