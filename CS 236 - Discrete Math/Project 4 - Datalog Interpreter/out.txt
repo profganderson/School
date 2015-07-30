@@ -1,0 +1,26 @@
+Scheme Evaluation
+
+Fact Evaluation
+
+cn
+
+csg
+  C='CS101' S='12345' G='A'
+  C='CS101' S='22222' G='B'
+  C='CS101' S='33333' G='C'
+  C='EE200' S='12345' G='B+'
+  C='EE200' S='22222' G='B'
+
+ncg
+
+snap
+  S='12345' N='C. Brown' A='12 Apple St.' P='555-1234'
+  S='22222' N='P. Patty' A='56 Grape Blvd' P='555-9999'
+  S='33333' N='Snoopy' A='12 Apple St.' P='555-1234'
+
+Query Evaluation
+
+cn('CS101',Name)? No
+
+ncg('Snoopy',Course,Grade)? No
+
