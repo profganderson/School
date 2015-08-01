@@ -105,22 +105,22 @@ std::string Database::evaluate_queries() {
 }
 
 Relation Database::rename(Relation r, std::vector<Parameter> params) {
-	std::set<std::string> variables;
+	std::vector<std::string> variables;
 	int num_parameters = params.size();
 	for (int i = 0; i < num_parameters; i++) {
 		Parameter param = params.at(i);
-		std::string val = param.value;
 		bool is_var = !param.is_string;
+		bool duplicate = false;
 
-		bool is_duplicate;
-		if (variables.find(val) == variables.end()) {
-			is_duplicate = false;
-		} else {
-			is_duplicate = true;
+		int num_var = variables.size();
+		for (int j = 0; j < num_var; j++) {
+			if (variables.at(j) == param.value) {
+				duplicate = true;
+			}
 		}
 
-		if (is_var && !is_duplicate) {
-			variables.insert(val);
+		if (is_var && !duplicate) {
+			variables.push_back(param.value);
 		}
 	}
 
@@ -133,21 +133,36 @@ Relation Database::project(Relation r, std::vector<Parameter> params) {
 	int num_params = params.size();
 	std::vector<int> indices;
 
-	std::set<std::string> variables;
+	std::vector<std::string> variables;
 	for (int i = 0; i < num_params; i++) {
-		std::string val = params.at(i).value;
 		bool is_var = !params.at(i).is_string;
+		bool duplicate = false;
 
-		bool is_duplicate;
-		if (variables.find(val) == variables.end()) {
-			is_duplicate = false;
-		} else {
-			is_duplicate = true;
+		int num_var = variables.size();
+		for (int j = 0; j < num_var; j++) {
+			if (variables.at(j) == params.at(i).value)
+				duplicate = true;
 		}
 
-		if (is_var && !is_duplicate) {
+		if (is_var && !duplicate) {
 			indices.push_back(i);
-			variables.insert(val);
+			variables.push_back(params.at(i).value);
+		}
+	}
+
+	r = r.project(indices);
+
+	return r;
+}
+
+Relation Database::project_rule(Relation r, std::vector<Parameter> params) {
+	std::vector<int> indices;
+	int scheme_size = r.scheme.size();
+	for (auto param : params) {
+		for (int i = 0; i < scheme_size; i++) {
+			if (param.value == r.scheme.at(i)) {
+				indices.push_back(i);
+			}
 		}
 	}
 
@@ -190,123 +205,60 @@ Relation Database::select(Relation r_temp, std::vector<Parameter> params) {
 	return r_temp;
 }
 
-void Database::evaluate_rules() {
-	for (auto rule : program.rules) {
+std::string Database::evaluate_rules() {
+	std::stringstream s;
+	int start_count, end_count, total_iterations;
 
-		Relation result;
-		std::vector<Relation> temp_relations;
+	s << "Rule Evaluation\n";
+	total_iterations = 0;
 
-		for (auto predicate : rule.body) {
-			std::string relation_name = predicate.name;
-			Relation r = relations.at(relation_name);
-			Relation r_temp = r; // temporary relation to work on
+	do {
+		total_iterations++;
+		start_count = total_tuples();
+		for (auto rule : program.rules) {
+			Relation result;
+			std::vector<Relation> temp_relations;
 
-			r_temp = select(r_temp, predicate.params);
-			r_temp = project(r_temp, predicate.params);
-			r_temp = rename(r_temp, predicate.params);
+			for (auto predicate : rule.body) {
+				std::string relation_name = predicate.name;
+				Relation r = relations.at(relation_name);
+				Relation r_temp = r; // temporary relation to work on
 
-			temp_relations.push_back(r_temp);
-		}
+				r_temp = select(r_temp, predicate.params);
+				r_temp = project(r_temp, predicate.params);
+				r_temp = rename(r_temp, predicate.params);
 
-		int num_relations = temp_relations.size();
-		if ( num_relations > 1 ) {
-			for (int i = 0; i < num_relations; i++) {
-				Relation rel = temp_relations.at(i);
-				result = rel.join();
+				temp_relations.push_back(r_temp);
 			}
 
-			result = join(temp_relations);
-		} else {
+			// Populate the result with the first relation processed above
 			result = temp_relations.at(0);
-		}
 
-
-		// Relation r = join(rule);
-
-
-
-		// If there are two or more predicates on the right-hand side of a rule,
-		// join the intermediate results to form the single result for Step 2.
-		// Thus, if p1, p2, and p3 are the intermediate results from Step 1,
-		// join them (p1 |x| p2 |x| p3) into a single relation.
-
-		// The predicates in the body of a rule may have variables that are not used
-		// in the head of the rule. The variables in the head may also appear in a
-		// different order than those in the body. Use a project operation on the result
-		// from Step 2 to remove the columns that don't appear in the head of the rule
-		// and to reorder the columns to match the order in the head.
-
-		// Rename the relation that results from Step 3 to make it union compatible with the
-		// relation that matches the head of the rule. Rename each attribute in the result from
-		// Step 3 to the attribute name found in the corresponding position in the relation that
-		// matches the head of the rule.
-
-		// Union the result from Step 4 with the relation in the database whose name matches the
-		// name of the head of the rule.
-	}
-}
-
-Relation Database::join(std::vector<Relation> rels) {
-	// Join the schemes of all the relations
-	Scheme scheme;
-	for (auto r : rels) {
-		scheme = join_scheme(scheme, r.scheme);
-	}
-
-	Relation r = Relation();
-	r.scheme = scheme;
-
-	int num_relations = rels.size();
-	for ( int i = 1; i < num_relations; i++ ) {
-		for (auto tuple : rels.at(i).tuples) {
-			for (auto tuple : rels.at(i - 1).tuples) {
-
+			// Do any necessary joins for other relations in the vector
+			int num_relations = temp_relations.size();
+			if ( num_relations > 1 ) {
+				for (int i = 1; i < num_relations; i++) {
+					Relation r2 = temp_relations.at(i);
+					result = result.join(r2);
+				}
 			}
+
+			// Project and rename to match the rule head
+			result = project_rule(result, rule.head.params);
+			result = rename(result, rule.head.params);
+
+			// Union
+			s << "\n" << rule.to_string();
+			s << relations[rule.head.name].do_union(result);
 		}
-	}
+		end_count = total_tuples();
+	} while ((end_count - start_count) > 0);
 
-//	Join must be able to join two relations that have no common attribute names.
-//	Join must be able to join two relations that have multiple common attribute names.
-//
-//	The following pseudo-code describes one way to compute the join of relations r1 and r2.
-//
-//		make the scheme s for the result relation
-//		    (combine r1's scheme with r2's scheme)
-//
-//		make a new empty relation r using scheme s
-//
-//		for each tuple t1 in r1
-//		    for each tuple t2 in r2
-//
-//			if t1 and t2 can join
-//			    join t1 and t2 to make tuple t
-//			    add tuple t to relation r
-//			end if
-//
-//		    end for
-//		end for
-//	Note that the following operations used in the join should be decomposed into separate routines.
-//
-//	combining r1's scheme with r2's scheme
-//	testing t1 and t2 to see if they can join
-//	joining t1 and t2
+	s << "\n\nConverged after " << total_iterations << " passes through the Rules.\n\n";
 
-	return r;
-}
+	s << relations_to_string();
 
-// Accepts a rule and produces a join scheme for the rule's body
-Scheme Database::join_scheme (Scheme s1, Scheme s2) {
-	Scheme s = Scheme();
-
-	for (auto var1 : s1) {
-		for (auto var2 : s2) {
-			if (std::find(s.begin(), s.end(), var2) == s.end()) {
-				s.push_back(var2);
-			}
-		}
-	}
-
-	return s;
+	return s.str();
 }
 
 void Database::add_relation_to_map(std::string name, Relation relation) {
@@ -340,16 +292,14 @@ std::string Database::relations_to_string() {
 	return s.str();
 }
 
+int Database::total_tuples() {
+	int count = 0;
 
+	for (auto relation : relations) {
+		for ( auto tuple : relation.second.tuples ) {
+			count++;
+		}
+	}
 
-
-
-
-
-
-
-
-
-
-
-
+	return count;
+}

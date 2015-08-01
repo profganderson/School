@@ -34,34 +34,32 @@ int main(int argc, char* argv[])
 	Database db = Database();
 	db.load(program);
 
+	std::ofstream output(output_file);
+
 	// Evaluate Schemes
 	std::cout << "Evaluating Schemes..." << std::endl;
 	db.evaluate_schemes();
+	output << "Scheme Evaluation\n\n";
 	std::cout << "\tSchemes Evaluated!" << std::endl;
 
 	// Evaluate Facts
 	std::cout << "Evaluating Facts..." << std::endl;
 	db.evaluate_facts();
+	output << "Fact Evaluation\n\n";
+	output << db.relations_to_string();
 	std::cout << "\tFacts Evaluated!" << std::endl;
+
+	// Evaluate Rules
+	output << db.evaluate_rules();
 
 	// Evaluate Queries
 	std::cout << "Evaluating Queries..." << std::endl;
 	std::string query_results = db.evaluate_queries();
+	output << query_results;
 	std::cout << "\tQueries Evaluated!" << std::endl;
 
-	// Output results
-	std::cout << "Outputting..." << std::endl;
-	std::ofstream output(output_file);
-
-	output << "Scheme Evaluation\n\n";
-	output << "Fact Evaluation\n\n";
-	output << db.relations_to_string();
-	db.evaluate_rules();
-	output << query_results;
-
-
 	output.close();
-	std::cout << "\tFinished Output!" << std::endl;
+	std::cout << "\nFinished Output!" << std::endl;
 
 	// Clean up
 	delete scanner;

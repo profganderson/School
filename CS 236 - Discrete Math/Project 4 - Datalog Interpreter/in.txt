@@ -1,0 +1,14 @@
+Schemes:
+	bcd(A,B,C)
+	char(A)
+	
+Facts:
+	char('a').
+	char('b').
+	char('c').
+	
+Rules:
+	bcd(A,B,C) :- char(A),char(B),char(C).
+	
+Queries:
+	bcd(A,B,C)?

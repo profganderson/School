@@ -18,6 +18,7 @@ public:
 	virtual ~Rule();
 	Predicate head;
 	std::vector<Predicate> body;
+	std::string to_string();
 };
 
 #endif /* RULE_H_ */
