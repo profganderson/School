@@ -134,7 +134,12 @@ class Scheme : public vector<string> {
 
 
 
-
+Iterating through a map
+```
+for (auto i : m)
+    i.first
+    i.second
+```
 
 
 
