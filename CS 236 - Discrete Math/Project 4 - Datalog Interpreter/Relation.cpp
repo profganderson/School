@@ -125,10 +125,10 @@ Relation Relation::join(Relation r2) {
 Tuple Relation::do_product(Tuple t1, Tuple t2) {
 	Tuple t = Tuple();
 	for (auto item : t1) {
-		for (auto item2 : t2) {
-			t.push_back(item);
-			t.push_back(item2);
-		}
+		t.push_back(item);
+	}
+	for (auto item2 : t2) {
+		t.push_back(item2);
 	}
 	return t;
 }

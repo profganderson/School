@@ -1,5 +1,31 @@
+# cousin(C1,C2) :- childOf(C1,P1),childOf(C2,P2),sibling(P1,P2)
+#Schemes:
+#	childOf(A,B)
+#	sibling(A,B)
+#	cousin(A,B)
+#
+#Facts:
+#	childOf('A','J').
+#	childOf('J','N').
+#	childOf('N','B').
+#	childOf('T','B').
+#	sibling('A','A').
+#	sibling('J','J').
+#	sibling('N','N').
+#	sibling('N','T').
+#	sibling('T','N').
+#	sibling('T','T').
+#	
+#Rules:
+#	cousin(C1,C2) :- childOf(C1,P1),childOf(C2,P2),sibling(P1,P2).
+#	
+#Queries:
+#	cousin(A,B)?
+	
+
+
 Schemes:
-	bcd(A,B,C)
+ 	bcd(A,B,C)
 	char(A)
 	
 Facts:
