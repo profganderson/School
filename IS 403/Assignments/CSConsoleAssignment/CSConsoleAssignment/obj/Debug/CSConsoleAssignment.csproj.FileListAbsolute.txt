@@ -1,0 +1,6 @@
+C:\Users\Andy\Documents\IS-403\CSConsoleAssignment\CSConsoleAssignment\bin\Debug\CSConsoleAssignment.exe.config
+C:\Users\Andy\Documents\IS-403\CSConsoleAssignment\CSConsoleAssignment\bin\Debug\CSConsoleAssignment.exe
+C:\Users\Andy\Documents\IS-403\CSConsoleAssignment\CSConsoleAssignment\bin\Debug\CSConsoleAssignment.pdb
+C:\Users\Andy\Documents\IS-403\CSConsoleAssignment\CSConsoleAssignment\obj\Debug\CSConsoleAssignment.csprojResolveAssemblyReference.cache
+C:\Users\Andy\Documents\IS-403\CSConsoleAssignment\CSConsoleAssignment\obj\Debug\CSConsoleAssignment.exe
+C:\Users\Andy\Documents\IS-403\CSConsoleAssignment\CSConsoleAssignment\obj\Debug\CSConsoleAssignment.pdb
