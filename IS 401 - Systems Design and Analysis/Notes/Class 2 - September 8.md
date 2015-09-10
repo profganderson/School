@@ -25,3 +25,29 @@
 
 **Gratitude Moment**
 I am grateful for opportunites I have had to gain technical skills and work on projects in the past.
+
+
+
+6 processes of the SDLC:
+1. Identify the problem or need and obtain approval to proceed.
+2. Plan and monitor the project
+3. Discover and understand the details of the problem
+    * Also goes by the name of _systems analysis_
+4. Design the system 
+5. Build, test, and integrate the system
+6. Complete testing and deploy the solution
+
+
+**Technology Architecture** - the set of computing hardware, network hardware and topology, and system software employed by an organization.
+**Application architecture** - describes how software resources are organized and constructed to implement an organization's information systems.
+
+
+
+
+
+
+
+
+
+
+
