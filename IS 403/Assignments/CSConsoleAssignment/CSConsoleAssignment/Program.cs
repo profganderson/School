@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+ * 
+ * Author      : Andy Mockler
+ * Date        : 14 September 2015
+ * Description : Program for IS403 Console Application
+ *               Asks user for number of teams they wish to enter. Prompts user
+ *               to enter team names & number of points. Sorts teams by points
+ *               and prints them out in descending order.
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,30 +39,34 @@ namespace CSConsoleAssignment
                 return char.ToUpper(s[0]) + s.Substring(1);
         }
 
+        static int getValidInt(string message)
+        {
+            string input;
+            int validInt = 0;
+            bool validInput = false;
+            while (!validInput)
+            {
+                // Check for valid integer input and loop until input is valid
+                Console.Write(message);
+                input = Console.ReadLine();
+                try
+                {
+                    validInt = Convert.ToInt32(input);
+                    validInput = true;
+                }
+                catch { }
+            }
+
+            return validInt;
+        }
+
         static void Main(string[] args)
         {
             var teams = new List<SoccerTeam>();
             string input; // To use for reading lines in. The variable should be immediately transferred away from input to avoid being overridden.
             
             // Get the number of soccer teams
-            int numTeams = 0;
-            bool validInput = false;
-            while (!validInput)
-            {
-                // Check for valid integer input and loop until input is valid
-                Console.Write("How many teams? ");
-                input = Console.ReadLine();
-                try
-                {
-                    numTeams = Convert.ToInt32(input);
-                    validInput = true;
-                }
-                catch { }
-
-                // IMO, a more elegant solution than the try-catch, for this context at least:
-                // validInput = Int32.TryParse(input, out numTeams);
-            }
-
+            int numTeams = getValidInt("How many teams? ");
 
             // Get each team's information
             for (int i = 0; i < numTeams; i++)
@@ -65,9 +80,7 @@ namespace CSConsoleAssignment
                 name = UppercaseFirst(input);
 
                 // Get the team's points
-                Console.Write("\nEnter " + name + "'s points: ");
-                input = Console.ReadLine();
-                points = Int32.Parse(input);
+                points = getValidInt("\nEnter " + name + "'s points: ");
 
                 // Add the team to the teams list
                 var team = new SoccerTeam(name, points);
