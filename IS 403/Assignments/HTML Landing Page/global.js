@@ -1,6 +1,8 @@
 $(document).ready(function () {
 	Fay.init();
 
+	$('body').hide().fadeIn(750);
+
 	var menuOpen = false;
 	$('.menu-btn').on('click', function (e) {
 		e.preventDefault();
@@ -13,6 +15,14 @@ $(document).ready(function () {
 
 		menuOpen = !menuOpen;
 	});
+
+	$('.sidenav a').on('click', function (e) {
+		e.preventDefault();
+		var newPage = './' + $(this).attr('href');
+		$('body').fadeOut(300, function () {
+			window.location.href = newPage;
+		});
+	})
 });
 
 
