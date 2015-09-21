@@ -1,0 +1,9 @@
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\bin\Debug\Windows Form Application.exe.config
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\bin\Debug\Windows Form Application.exe
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\bin\Debug\Windows Form Application.pdb
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\obj\Debug\Windows Form Application.csprojResolveAssemblyReference.cache
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\obj\Debug\Windows_Form_Application.Form1.resources
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\obj\Debug\Windows_Form_Application.Properties.Resources.resources
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\obj\Debug\Windows Form Application.csproj.GenerateResource.Cache
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\obj\Debug\Windows Form Application.exe
+C:\Users\Andy\Documents\IS-403\Windows Form Application\Windows Form Application\obj\Debug\Windows Form Application.pdb
