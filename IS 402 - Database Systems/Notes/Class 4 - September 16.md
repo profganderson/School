@@ -14,7 +14,7 @@ create sequence entityid start with 100 increment by 1;
 
 # Create the table
 create table client(
-    clientID int default next value for entity id primary key
+    clientID  
    ,firstName varchar(50)
    ,lastName varchar(50)
 );

@@ -9,3 +9,6 @@ I am grateful for difficult decisions. I'm glad that I am in a place in my life 
 
 #### September 15, 2015
 I am grateful for my health! It has been so much better to be able to do what I want when I want to and not be impeded by ailments. Last year, I had mono and it plagued me for a while, making it very hard to be productive. It is nice to not feel like that anymore.
+
+#### September 17, 2015
+I am grateful for seasons - a new season always feels so nice, welcome, and refreshing. Happy Autumn!
