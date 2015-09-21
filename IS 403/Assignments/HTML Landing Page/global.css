@@ -74,6 +74,10 @@ a:hover {
 	color: #222;
 }
 
+.sidenav .active li {
+	color: #ddd;
+}
+
 footer {
 	position: fixed;
 	z-index: 10;
