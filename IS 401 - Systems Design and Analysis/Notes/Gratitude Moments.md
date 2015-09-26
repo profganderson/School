@@ -12,3 +12,9 @@ I am grateful for my health! It has been so much better to be able to do what I 
 
 #### September 17, 2015
 I am grateful for seasons - a new season always feels so nice, welcome, and refreshing. Happy Autumn!
+
+#### September 22, 2015
+I am grateful to have found a hobby that I am passionate about and that can be a career that will support and sustain my future family well.
+
+#### September 24, 2015
+I am grateful that I've somehow developed a good work ethic over the years and that I am healthy enough to be able to be flexible with sleep and recreation in order to achieve the things I want to achieve at this point in my life.
