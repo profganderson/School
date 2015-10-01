@@ -15,6 +15,12 @@ h1 {
 	font-weight: 300;
 }
 
+@media all and (max-width: 500px) {
+	h1 {
+		font-size: 100px;
+	}
+}
+
 a:hover {
 	text-decoration: none!important;
 }
