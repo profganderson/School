@@ -1,9 +1,7 @@
--- TODO:
---  Ask about ScheduledBy column in table
---  Ask about some duplicate records in the appointments table
-
 -- Empty out tables when running multiple times
 DROP VIEW Employees;
+DROP VIEW Counselors;
+DROP VIEW Clients;
 DROP TABLE Appointment;
 DROP TABLE Room;
 DROP TABLE Client;
@@ -59,6 +57,7 @@ CREATE TABLE Appointment (
  ,CounselorID int references Counselor not null
  ,ClientID int references Client not null
  ,RoomNumber int references Room not null
+ ,EmployeeID int references Employee not null
 );
 
 -- Create Employee View
@@ -118,11 +117,11 @@ INSERT INTO Room (RoomNumber, RoomName) VALUES (4, 'Peaceful woods');
 
 -- Insert Appointments
 -- INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, ScheduledBy)
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Sarah'), (SELECT RoomNumber FROM Room WHERE RoomName='Clear sky'), '2014-10-01T08:00:00', 90);
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Sergio'), (SELECT RoomNumber FROM Room WHERE RoomName='Clear sky'), '2014-10-01T11:00:00', 60);
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Louis'), (SELECT ClientID FROM Clients WHERE FirstName='Jerry'), (SELECT RoomNumber FROM Room WHERE RoomName='Flowing waters'), '2014-10-01T10:00:00', 60);
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Helen'), (SELECT RoomNumber FROM Room WHERE RoomName='Calm ocean'), '2014-10-01T10:00:00', 60);
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Kyle'), (SELECT ClientID FROM Clients WHERE FirstName='Thomas'), (SELECT RoomNumber FROM Room WHERE RoomName='Peaceful woods'), '2014-10-01T10:00:00', 90);
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Helen'), (SELECT RoomNumber FROM Room WHERE RoomName='Calm ocean'), '2014-10-01T10:00:00', 60);
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Louis'), (SELECT ClientID FROM Clients WHERE FirstName='Jerry'), (SELECT RoomNumber FROM Room WHERE RoomName='Flowing waters'), '2014-10-01T10:00:00', 60);
-INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Kyle'), (SELECT ClientID FROM Clients WHERE FirstName='Thomas'), (SELECT RoomNumber FROM Room WHERE RoomName='Peaceful woods'), '2014-10-01T10:00:00', 90);
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Sarah'), (SELECT RoomNumber FROM Room WHERE RoomName='Clear sky'), '2014-10-01T08:00:00', 90, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='Holly'));
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Sergio'), (SELECT RoomNumber FROM Room WHERE RoomName='Clear sky'), '2014-10-01T11:00:00', 60, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='Holly'));
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Louis'), (SELECT ClientID FROM Clients WHERE FirstName='Jerry'), (SELECT RoomNumber FROM Room WHERE RoomName='Flowing waters'), '2014-10-01T10:00:00', 60, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='John'));
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Helen'), (SELECT RoomNumber FROM Room WHERE RoomName='Calm ocean'), '2014-10-01T10:00:00', 60, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='Holly'));
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Kyle'), (SELECT ClientID FROM Clients WHERE FirstName='Thomas'), (SELECT RoomNumber FROM Room WHERE RoomName='Peaceful woods'), '2014-10-01T10:00:00', 90, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='Holly'));
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Audrey'), (SELECT ClientID FROM Clients WHERE FirstName='Helen'), (SELECT RoomNumber FROM Room WHERE RoomName='Calm ocean'), '2014-10-08T10:00:00', 60, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='Holly'));
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Louis'), (SELECT ClientID FROM Clients WHERE FirstName='Jerry'), (SELECT RoomNumber FROM Room WHERE RoomName='Flowing waters'), '2014-10-08T10:00:00', 60, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='Holly'));
+INSERT INTO Appointment (CounselorID, ClientID, RoomNumber, AppointmentTime, Duration, EmployeeID) VALUES ((SELECT CounselorID FROM Counselors WHERE FirstName='Kyle'), (SELECT ClientID FROM Clients WHERE FirstName='Thomas'), (SELECT RoomNumber FROM Room WHERE RoomName='Peaceful woods'), '2014-10-08T10:00:00', 90, (SELECT EmployeeID FROM Employee e JOIN Person p on p.PersonID=e.EmployeeID WHERE FirstName='Holly'));
