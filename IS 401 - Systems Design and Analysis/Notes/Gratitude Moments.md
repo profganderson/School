@@ -1,5 +1,5 @@
 # Gratitude Moments
-Every class period, I will write down something I am grateful for. 
+Every class period, I will write down something I am grateful for.
 
 #### September 8, 2015
 I am grateful for opportunities I have had to gain technical skills and work on projects in the past.
@@ -18,3 +18,6 @@ I am grateful to have found a hobby that I am passionate about and that can be a
 
 #### September 24, 2015
 I am grateful that I've somehow developed a good work ethic over the years and that I am healthy enough to be able to be flexible with sleep and recreation in order to achieve the things I want to achieve at this point in my life.
+
+#### October 6, 2015
+I am grateful for the happiness I feel in my life and the guidance I receive to make me a better person to those around me.
