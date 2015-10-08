@@ -21,3 +21,6 @@ I am grateful that I've somehow developed a good work ethic over the years and t
 
 #### October 6, 2015
 I am grateful for the happiness I feel in my life and the guidance I receive to make me a better person to those around me.
+
+#### October 8, 2015
+I am grateful for a family that loves me - especially parents that love and care for me.
