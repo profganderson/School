@@ -24,3 +24,6 @@ I am grateful for the happiness I feel in my life and the guidance I receive to 
 
 #### October 8, 2015
 I am grateful for a family that loves me - especially parents that love and care for me.
+
+#### October 13, 2015
+I am grateful for the power of fasting and prayer. Haylee's dad has been very sick and, for a while, it seemed like he might not make it. After much fasting and prayer from his family and friends, though, he is now recovering and has been able to leave the hospital. 
