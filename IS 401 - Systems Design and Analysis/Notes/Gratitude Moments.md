@@ -26,4 +26,7 @@ I am grateful for the happiness I feel in my life and the guidance I receive to 
 I am grateful for a family that loves me - especially parents that love and care for me.
 
 #### October 13, 2015
-I am grateful for the power of fasting and prayer. Haylee's dad has been very sick and, for a while, it seemed like he might not make it. After much fasting and prayer from his family and friends, though, he is now recovering and has been able to leave the hospital. 
+I am grateful for the power of fasting and prayer. Haylee's dad has been very sick and, for a while, it seemed like he might not make it. After much fasting and prayer from his family and friends, though, he is now recovering and has been able to leave the hospital.
+
+#### October 15, 2015
+I am grateful for friends who love and support me. Last night I taught a value-added forum about React and there was a great turnout, mostly thanks to the friends I've made during my time in the Junior Core.
