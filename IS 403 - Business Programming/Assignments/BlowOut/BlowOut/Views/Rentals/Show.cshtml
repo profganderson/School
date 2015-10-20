@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="container">
+    <h1>Rent an Instrument</h1>
+    <div class="row">
+        <div class="col-sm-4">
+            <img src=@ViewData["img"] class="img-responsive" />
+        </div>
+        <div class="col-sm-8 text-center">
+            <h1>@ViewData["name"]</h1>
+            <p class="lead">@ViewData["pricing"]</p>
+            <p class="text-info">After 18 months of rental, the client owns the instrument. If returned within 3 months, there is a $200 re-stocking fee. After 3 months, any equity in the instrument is forfeited.</p>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,41 @@
+﻿.myFooterText {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.home-header {
+    background: url('header.jpg') center center no-repeat;
+    background-size: cover;
+    height: 500px;
+    position: relative;
+}
+
+.home-header:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    background: rgba(0,0,0,0.25);
+}
+
+.header-content h1 {
+    padding-top: 200px;
+    margin: 0;
+    color: white;
+    text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    font-size: 60px;
+    position:relative;
+    z-index: 10;
+}
+
+.bach-quote {
+    padding-top: 75px;
+    font-size: 30px;
+    font-weight: 100;
+    max-width: 1000px;
+    margin: auto;
+}

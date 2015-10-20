@@ -9,10 +9,19 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <div> 
         <p>Please call Support at <u><strong>801-555-1212</strong></u>. Thank you!</p>
+        @using (Html.BeginForm())
+        {
+            <label class="control-label">Name:</label>
+            <label class="control-label">Email:</label>
+            <label class="control-label">Phone:</label>
+            <label class="control-label">Will you attend?</label>
+            <input type="submit" value="Submit RSVP" class="btn btn-default"/>
+        }
     </div>
 </body>
 </html>

@@ -29,5 +29,7 @@ namespace BlowOut.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<BlowOut.Models.Rental> Rentals { get; set; }
     }
 }

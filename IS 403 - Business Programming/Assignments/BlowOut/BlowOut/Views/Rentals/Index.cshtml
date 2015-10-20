@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="container">
+    <h1>Rentals</h1>
+
+    <div class="row text-center">
+        <div class="col-sm-4">
+            <img src="http://edinagiveandgo.org/wp-content/uploads/2015/04/trumpet1.png?7fd7da" class="img-responsive center-block" />
+            <h2>Trumpet</h2>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Trumpet", pricing = "New - $55", img = "http://edinagiveandgo.org/wp-content/uploads/2015/04/trumpet1.png?7fd7da" })" class="btn btn-success">New - $55</a>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Trumpet", pricing = "Used - $25", img = "http://edinagiveandgo.org/wp-content/uploads/2015/04/trumpet1.png?7fd7da" })" class="btn btn-primary">Used - $25</a>
+        </div>
+        <div class="col-sm-4">
+            <img src="http://www.amromusic.com/assets/1942/7_trombone-trigger-1.jpg" class="img-responsive center-block" />
+            <h2>Trombone</h2>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Trombone", pricing = "New - $60", img = "http://www.amromusic.com/assets/1942/7_trombone-trigger-1.jpg" })" class="btn btn-success">New - $60</a>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Trombone", pricing = "Used - $35", img = "http://www.amromusic.com/assets/1942/7_trombone-trigger-1.jpg" })" class="btn btn-primary">Used - $35</a>
+        </div>
+        <div class="col-sm-4">
+            <img src="http://www.kevinmcmullin.com/wp-content/uploads/2013/09/tuba.jpg" class="img-responsive center-block" />
+            <h2>Tuba</h2>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Tuba", pricing = "New - $70", img = "http://www.kevinmcmullin.com/wp-content/uploads/2013/09/tuba.jpg" })" class="btn btn-success">New - $70</a>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Tuba", pricing = "Used - $50", img = "http://www.kevinmcmullin.com/wp-content/uploads/2013/09/tuba.jpg" })" class="btn btn-primary">Used - $70</a>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-sm-4">
+            <img src="http://www.gemeinhardt.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/g/lg-3b_1.jpg" class="img-responsive center-block" />
+            <h2>Flute</h2>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Flute", pricing = "New - $40", img = "http://www.gemeinhardt.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/g/lg-3b_1.jpg" })" class="btn btn-success">New - $40</a>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Flute", pricing = "Used - $25", img = "http://www.gemeinhardt.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/l/g/lg-3b_1.jpg" })" class="btn btn-primary">Used - $25</a>
+        </div>
+        <div class="col-sm-4">
+            <img src="http://www.dawsons.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/y/a/yamaha-ycl-255s-clarinet.jpg" class="img-responsive center-block" />
+            <h2>Clarinet</h2>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Clarinet", pricing = "New - $35", img = "http://www.dawsons.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/y/a/yamaha-ycl-255s-clarinet.jpg" })" class="btn btn-success">New - $35</a>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Clarinet", pricing = "Used - $27", img = "http://www.dawsons.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/y/a/yamaha-ycl-255s-clarinet.jpg" })" class="btn btn-primary">Used - $27</a>
+        </div>
+        <div class="col-sm-4">
+            <img src="http://musicalmart.net/shop/images/Cecilio_AS-280GSG_Alto_Saxophone.jpg" class="img-responsive center-block" />
+            <h2>Saxophone</h2>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Saxophone", pricing = "New - $42", img = "http://musicalmart.net/shop/images/Cecilio_AS-280GSG_Alto_Saxophone.jpg" })" class="btn btn-success">New - $42</a>
+            <a href="@Url.Action("Show", "Rentals", new { name = "Saxophone", pricing = "Used - $30", img = "http://musicalmart.net/shop/images/Cecilio_AS-280GSG_Alto_Saxophone.jpg" })" class="btn btn-primary">Used - $30</a>
+        </div>
+    </div>
+</section>
+
